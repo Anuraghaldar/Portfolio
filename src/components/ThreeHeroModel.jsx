@@ -1,18 +1,16 @@
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
-const ThreeHeroModel = ({ globeSize = 3.5 }) => {
+const ThreeHeroModel = ({ globeSize = 3.5, offsetX = 0 }) => {
   const containerRef = useRef();
   const initialized = useRef(false);
 
   useEffect(() => {
-    // Prevent double initialization (React StrictMode)
     if (initialized.current || !containerRef.current) return;
     initialized.current = true;
 
     const container = containerRef.current;
     
-    // Clear any existing canvas
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
@@ -24,8 +22,8 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
       0.1,
       1000
     );
-    camera.position.set(0, 0, 12);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(offsetX, 0, 12);
+    camera.lookAt(offsetX, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -39,9 +37,9 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
     scene.add(pointLight);
 
     const globeGroup = new THREE.Group();
+    globeGroup.position.set(offsetX, 0, 0);
     scene.add(globeGroup);
 
-    // Generate points using golden spiral
     const count = 180;
     const phi = Math.PI * (3 - Math.sqrt(5));
     const pts = [];
@@ -57,7 +55,6 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
       ));
     }
 
-    // Points
     const pointsGeo = new THREE.BufferGeometry();
     pointsGeo.setAttribute('position', new THREE.Float32BufferAttribute(
       pts.flatMap(p => [p.x, p.y, p.z]), 3
@@ -71,7 +68,6 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
     });
     globeGroup.add(new THREE.Points(pointsGeo, pointsMat));
 
-    // Lines
     const lns = [];
     for (let i = 0; i < count; i++) {
       for (let j = i + 1; j < count; j++) {
@@ -89,16 +85,14 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
     });
     globeGroup.add(new THREE.LineSegments(linesGeo, linesMat));
 
-    // // Inner sphere
-    // const sphereGeo = new THREE.SphereGeometry(globeSize * 0.88, 48, 48);
-    // const sphereMat = new THREE.MeshBasicMaterial({
-    //   color: 0x0a1628,
-    //   transparent: true,
-    //   opacity: 0.97
-    // });
-    // globeGroup.add(new THREE.Mesh(sphereGeo, sphereMat));
+    const sphereGeo = new THREE.SphereGeometry(globeSize * 0.88, 48, 48);
+    const sphereMat = new THREE.MeshBasicMaterial({
+      color: 0x0a1628,
+      transparent: true,
+      opacity: 0.97
+    });
+    globeGroup.add(new THREE.Mesh(sphereGeo, sphereMat));
 
-    // Animation & interaction state
     let isDragging = false;
     let prevMouse = { x: 0, y: 0 };
     let animId;
@@ -110,7 +104,6 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
     };
     animate();
 
-    // Resize
     const handleResize = () => {
       if (!container) return;
       const w = container.clientWidth;
@@ -121,7 +114,6 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Mouse controls
     const canvas = renderer.domElement;
     const onMouseDown = (e) => {
       isDragging = true;
@@ -134,9 +126,13 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
       prevMouse = { x: e.clientX, y: e.clientY };
     };
     const onMouseUp = () => { isDragging = false; };
+    
+    // Infinite zoom - no limits
     const onWheel = (e) => {
       e.preventDefault();
-      camera.position.z = Math.max(6, Math.min(25, camera.position.z + e.deltaY * 0.01));
+      const newZ = camera.position.z + e.deltaY * 0.02;
+      // Min 2 (very close), no max limit (infinite zoom out)
+      camera.position.z = Math.max(2, newZ);
     };
 
     canvas.addEventListener('mousedown', onMouseDown);
@@ -145,7 +141,6 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
     canvas.addEventListener('mouseleave', onMouseUp);
     canvas.addEventListener('wheel', onWheel, { passive: false });
 
-    // Touch controls
     const onTouchStart = (e) => {
       if (e.touches.length === 1) {
         isDragging = true;
@@ -164,7 +159,6 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
     canvas.addEventListener('touchmove', onTouchMove);
     canvas.addEventListener('touchend', onTouchEnd);
 
-    // Cleanup
     return () => {
       initialized.current = false;
       cancelAnimationFrame(animId);
@@ -182,13 +176,13 @@ const ThreeHeroModel = ({ globeSize = 3.5 }) => {
         container.removeChild(renderer.domElement);
       }
     };
-  }, [globeSize]);
+  }, [globeSize, offsetX]);
 
   return (
     <div
       ref={containerRef}
-      className="w-full h-full cursor-grab active:cursor-grabbing"
-      style={{ minHeight: '400px', touchAction: 'none' }}
+      className="absolute inset-0 cursor-grab active:cursor-grabbing"
+      style={{ touchAction: 'none' }}
     />
   );
 };
