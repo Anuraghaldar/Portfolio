@@ -30,14 +30,21 @@ const Skills = () => {
                                 </h3>
                                 <div className="flex flex-wrap gap-2">
                                     {items.map((skill) => (
-                                        <span
-                                            key={skill}
-                                            className="px-3 py-1 bg-slate-800 text-cyan-300 text-sm rounded-full border border-slate-700 hover:border-cyan-500/50 transition-colors"
-                                        >
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
+                                        <div key={skill.name} className="relative group">
+                                            <span
+                                                className="p-3 bg-slate-800 text-cyan-300 text-sm rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-colors flex items-center justify-center w-16 h-16"
+                                            >
+                                                {typeof skill.icon === 'string' ? (
+                                                    <img src={skill.icon} alt={skill.name} className="w-10 h-10" />
+                                                ) : (
+                                                    skill.icon && <skill.icon className="text-4xl" />
+                                                )}
+                                            </span>
+                                            <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-slate-700 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+                                                {skill.name}
+                                            </span>
+                                        </div>
+                                    ))}</div>
                             </motion.div>
                         ))}
                     </div>

@@ -11,15 +11,79 @@ export const personalInfo = {
     github: "https://github.com/er-pritamdas",
 };
 
+import {
+    SiHelm, SiChef, SiJira,
+    SiVmware,
+    SiJsonwebtokens,
+    SiDaisyui
+} from "react-icons/si";
+import { FaNetworkWired, FaServer, FaInfinity, FaBrain, FaShieldAlt, FaProjectDiagram, FaTerminal } from "react-icons/fa";
+import { TbApi } from "react-icons/tb";
+
 export const skills = {
-    DevOps: ["Linux", "Docker", "Kubernetes", "Helm", "Jenkins", "CI/CD", "Ansible", "Chef", "Terraform", "Git", "F5", "Jira", "Nginx"],
-    Cloud: ["AWS", "Azure", "VMware"],
-    Databases: ["MongoDB", "MySQL"],
-    Backend: ["Node.js", "Express.js", "REST API", "JWT", "Redux"],
-    Frontend: ["React.js", "Tailwind CSS", "DaisyUI", "MaterialUI", "HTML5", "CSS3", "JavaScript"],
-    Networking: ["SD-WAN", "SASE", "Cisco", "Juniper", "Arista", "Huawei"],
-    "AI Automation": ["RAG", "N8N", "MCP Server"],
-    "Languages & Tools": ["Python", "JavaScript", "C", "C++", "Bash", "Postman", "PuTTY", "VS Code"],
+    DevOps: [
+        { name: "Linux", icon: "https://skillicons.dev/icons?i=linux" },
+        { name: "Docker", icon: "https://skillicons.dev/icons?i=docker" },
+        { name: "Kubernetes", icon: "https://skillicons.dev/icons?i=kubernetes" },
+        { name: "Helm", icon: SiHelm },
+        { name: "Jenkins", icon: "https://skillicons.dev/icons?i=jenkins" },
+        { name: "CI/CD", icon: FaInfinity },
+        { name: "Ansible", icon: "https://skillicons.dev/icons?i=ansible" },
+        { name: "Chef", icon: SiChef },
+        { name: "Terraform", icon: "https://skillicons.dev/icons?i=terraform" },
+        { name: "Git", icon: "https://skillicons.dev/icons?i=git" },
+        { name: "F5", icon: FaShieldAlt },
+        { name: "Jira", icon: SiJira },
+        { name: "Nginx", icon: "https://skillicons.dev/icons?i=nginx" }
+    ],
+    Cloud: [
+        { name: "AWS", icon: "https://skillicons.dev/icons?i=aws" },
+        { name: "Azure", icon: "https://skillicons.dev/icons?i=azure" },
+        { name: "VMware", icon: SiVmware }
+    ],
+    Databases: [
+        { name: "MongoDB", icon: "https://skillicons.dev/icons?i=mongodb" },
+        { name: "MySQL", icon: "https://skillicons.dev/icons?i=mysql" }
+    ],
+    Backend: [
+        { name: "Node.js", icon: "https://skillicons.dev/icons?i=nodejs" },
+        { name: "Express.js", icon: "https://skillicons.dev/icons?i=express" },
+        { name: "REST API", icon: TbApi },
+        { name: "JWT", icon: SiJsonwebtokens },
+        { name: "Redux", icon: "https://skillicons.dev/icons?i=redux" }
+    ],
+    Frontend: [
+        { name: "React.js", icon: "https://skillicons.dev/icons?i=react" },
+        { name: "Tailwind CSS", icon: "https://skillicons.dev/icons?i=tailwind" },
+        { name: "DaisyUI", icon: SiDaisyui },
+        { name: "MaterialUI", icon: "https://skillicons.dev/icons?i=materialui" },
+        { name: "HTML5", icon: "https://skillicons.dev/icons?i=html" },
+        { name: "CSS3", icon: "https://skillicons.dev/icons?i=css" },
+        { name: "JavaScript", icon: "https://skillicons.dev/icons?i=js" }
+    ],
+    Networking: [
+        { name: "SD-WAN", icon: FaNetworkWired },
+        { name: "SASE", icon: FaShieldAlt },
+        { name: "Cisco", icon: FaNetworkWired },
+        { name: "Juniper", icon: FaNetworkWired },
+        { name: "Arista", icon: FaNetworkWired },
+        { name: "Huawei", icon: FaNetworkWired }
+    ],
+    "AI Automation": [
+        { name: "RAG", icon: FaBrain },
+        { name: "N8N", icon: FaProjectDiagram },
+        { name: "MCP Server", icon: FaServer }
+    ],
+    "Languages & Tools": [
+        { name: "Python", icon: "https://skillicons.dev/icons?i=python" },
+        { name: "JavaScript", icon: "https://skillicons.dev/icons?i=js" },
+        { name: "C", icon: "https://skillicons.dev/icons?i=c" },
+        { name: "C++", icon: "https://skillicons.dev/icons?i=cpp" },
+        { name: "Bash", icon: "https://skillicons.dev/icons?i=bash" },
+        { name: "Postman", icon: "https://skillicons.dev/icons?i=postman" },
+        { name: "PuTTY", icon: FaTerminal },
+        { name: "VS Code", icon: "https://skillicons.dev/icons?i=vscode" }
+    ]
 };
 
 export const experience = [
