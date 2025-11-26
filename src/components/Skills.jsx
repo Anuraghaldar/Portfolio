@@ -40,8 +40,9 @@ const Skills = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center md:text-left"
                 >
-                    <p className="text-cyan-400 text-sm uppercase tracking-wider mb-2">My Arsenal</p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">Full Stack.</h2>
+                    <p className="text-cyan-400 text-sm uppercase tracking-wider mb-2">My Universe</p>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">Technical Skills</h2>
+                    <p className="text-slate-400 text-base md:text-lg">A constellation of technologies I've mastered on my journey.</p>
                 </motion.div>
             </div>
 
