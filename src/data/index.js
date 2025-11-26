@@ -11,23 +11,20 @@ export const personalInfo = {
     github: "https://github.com/er-pritamdas",
 };
 
-
-
-
 export const skills = {
     DevOps: [
         { name: "Linux", icon: "https://skillicons.dev/icons?i=linux" },
         { name: "Docker", icon: "https://skillicons.dev/icons?i=docker" },
         { name: "Kubernetes", icon: "https://skillicons.dev/icons?i=kubernetes" },
-        { name: "Helm", icon: "https://skillicons.dev/icons?i=helm" },
+        // { name: "Helm", icon: "https://icon.icepanel.io/Technology/png-shadow-512/Helm.png" },
         { name: "Jenkins", icon: "https://skillicons.dev/icons?i=jenkins" },
-        { name: "CI/CD", icon: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-ci-cd-devops-flaticons-lineal-color-flat-icons.png" },
+        // { name: "CI/CD", icon: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-ci-cd-devops-flaticons-lineal-color-flat-icons.png" },
         { name: "Ansible", icon: "https://skillicons.dev/icons?i=ansible" },
-        { name: "Chef", icon: "https://skillicons.dev/icons?i=chef" },
+        { name: "Chef", icon: "https://cdn.prod.website-files.com/62a8969da1ab56329dc8c41e/643ccf55b8f65176b8927b44_637c6f908e6c817352497d0e_chef-software-vector-logo.png" },
         { name: "Terraform", icon: "https://skillicons.dev/icons?i=terraform" },
         { name: "Git", icon: "https://skillicons.dev/icons?i=git" },
         { name: "F5", icon: "https://www.google.com/s2/favicons?domain=f5.com&sz=128" },
-        { name: "Jira", icon: "https://skillicons.dev/icons?i=jira" },
+        { name: "Jira", icon: "https://icon.icepanel.io/Technology/svg/Jira.svg" },
         { name: "Nginx", icon: "https://skillicons.dev/icons?i=nginx" }
     ],
     Cloud: [
@@ -42,14 +39,14 @@ export const skills = {
     Backend: [
         { name: "Node.js", icon: "https://skillicons.dev/icons?i=nodejs" },
         { name: "Express.js", icon: "https://skillicons.dev/icons?i=express" },
-        { name: "REST API", icon: "https://img.icons8.com/color/48/api-settings.png" },
+        { name: "REST API", icon: "public/RESTAPI.png" },
         { name: "JWT", icon: "https://jwt.io/img/pic_logo.svg" },
         { name: "Redux", icon: "https://skillicons.dev/icons?i=redux" }
     ],
     Frontend: [
         { name: "React.js", icon: "https://skillicons.dev/icons?i=react" },
         { name: "Tailwind CSS", icon: "https://skillicons.dev/icons?i=tailwind" },
-        { name: "DaisyUI", icon: "https://img.icons8.com/color/48/daisy-1.png" },
+        { name: "DaisyUI", icon: "https://img.daisyui.com/images/daisyui/mark-static.svg" },
         { name: "MaterialUI", icon: "https://skillicons.dev/icons?i=materialui" },
         { name: "HTML5", icon: "https://skillicons.dev/icons?i=html" },
         { name: "CSS3", icon: "https://skillicons.dev/icons?i=css" },
@@ -79,6 +76,7 @@ export const skills = {
         { name: "VS Code", icon: "https://skillicons.dev/icons?i=vscode" }
     ]
 };
+
 
 export const experience = [
     {
@@ -124,7 +122,7 @@ export const experience = [
         period: "Jan 2022 - Mar 2022",
         location: "Remote",
         website: "https://letsgrowmore.in",
-        logo: "https://www.google.com/s2/favicons?domain=letsgrowmore.in&sz=128",
+        logo: "https://letsgrowmore.in/wp-content/uploads/2021/05/Artboard-1-1-removebg-preview-e1645900071758.jpg",
         tech: ["HTML", "CSS", "JavaScript", "React"],
         description: [
             "Converted UI/UX designs into pixel-perfect web interfaces with HTML, CSS, JS.",
