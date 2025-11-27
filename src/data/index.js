@@ -31,18 +31,18 @@ export const heroMetrics = [
         label: "Projects Completed",
         highlight: false
     },
-    {
-        value: 95,
-        suffix: "%",
-        label: "Client Satisfaction Rate",
-        highlight: true // This will show the % in cyan color
-    },
     // {
-    //     value: 8,
-    //     suffix: "+",
-    //     label: "Technologies Mastered",
-    //     highlight: false
+    //     value: 95,
+    //     suffix: "%",
+    //     label: "Client Satisfaction Rate",
+    //     highlight: true // This will show the % in cyan color
     // },
+    {
+        value: 40,
+        suffix: "+",
+        label: "Technologies Mastered",
+        highlight: true
+    },
     {
         value: 8,
         suffix: "+",
@@ -185,7 +185,7 @@ export const projects = [
         category: "Web Development",
         image: "https://media.licdn.com/dms/image/v2/D5622AQFrkAd5H1VEww/feedshare-shrink_1280/B56Zn6w2DFHUAs-/0/1760848733533?e=1766016000&v=beta&t=U5xdjWKgKnsX3qwveWj7KTTD86imoT906v82Nb6ndLw",
         featured: true,
-        link: "#",
+        link: "https://github.com/er-pritamdas/Progress-Pulse",
         github: "https://github.com/er-pritamdas",
     },
     {
@@ -196,7 +196,7 @@ export const projects = [
         category: "AI Automation",
         image: "https://media.licdn.com/dms/image/v2/D5622AQGWaAfOd70iPA/feedshare-shrink_1280/B56Zi4OowKHQAk-/0/1755437502304?e=1766016000&v=beta&t=JO4TtA4QbcD_c6gn0lytT46SvlZ6ZaEMQwSZaJqpHSA",
         featured: false,
-        link: "#",
+        link: "https://github.com/er-pritamdas/AI-Automation/tree/main/02.%20RAG%20Chatbot%20for%20Company%20Documents",
         github: "https://github.com/er-pritamdas",
     },
     {
@@ -207,7 +207,7 @@ export const projects = [
         category: "DevOps",
         image: "https://media.licdn.com/dms/image/v2/D5622AQEPLOFuTTiHjw/feedshare-shrink_2048_1536/B56Zja5sf2HAAw-/0/1756019216070?e=1766016000&v=beta&t=vfxqyBP9M4mfRmMyHXeTPZB507U133ZeHRkD2LO5jpw",
         featured: false,
-        link: "#",
+        link: "https://github.com/er-pritamdas/AI-Automation/tree/main/03.%20MCP%20Server%20with%20AgentPass%20AI",
         github: "https://github.com/er-pritamdas",
     },
     {
@@ -218,7 +218,7 @@ export const projects = [
         category: "AI Automation",
         image: "https://media.licdn.com/dms/image/v2/D5622AQHDP79OncMBxA/feedshare-shrink_2048_1536/B56ZiUD3HQHkAw-/0/1754830697716?e=1766016000&v=beta&t=gMqamR6yxOVH3ba9ikiLrL69CwgBK7EtraTtd5Akp0k",
         featured: false,
-        link: "#",
+        link: "https://github.com/er-pritamdas/AI-Automation/tree/main/01.%20AI%20Agent%20for%20ATS%20Optimization",
         github: "https://github.com/er-pritamdas",
     },
     // {
@@ -316,7 +316,7 @@ export const certifications = [
         date: "Nov 2025",
         logo: "https://www.google.com/s2/favicons?domain=github.com&sz=128",
         skills: ["GitHub", "Version Control"],
-        link: "#"
+        link: "https://www.linkedin.com/learning/certificates/caf85545eca039388b9fcb05dfc4863ac7e88237dd3ce2ae1bc6afb030fcf29f"
     },
     {
         name: "Ubuntu Linux Professional Certificate",
@@ -324,7 +324,7 @@ export const certifications = [
         date: "Nov 2025",
         logo: "https://www.google.com/s2/favicons?domain=ubuntu.com&sz=128",
         skills: ["Linux System Administration", "User Management"],
-        link: "#"
+        link: "https://www.linkedin.com/learning/certificates/6797680c8c92ef1161e3335f290a1d6e6ff75f47183637a424288c344000369b"
     },
     {
         name: "DevOps Professional Certificate",
@@ -332,7 +332,7 @@ export const certifications = [
         date: "Oct 2025",
         logo: "https://www.google.com/s2/favicons?domain=pagerduty.com&sz=128",
         skills: ["Infrastructure as code (IaC)", "CI/CD"],
-        link: "#"
+        link: "https://www.linkedin.com/learning/certificates/d7fc36871e11f5fbedad3adc7479c271516e0c32c087f83b707e30c5e0522e70"
     },
     {
         name: "Docker Foundations Professional Certificate",
@@ -340,7 +340,7 @@ export const certifications = [
         date: "Oct 2025",
         logo: "https://www.google.com/s2/favicons?domain=docker.com&sz=128",
         skills: ["Docker Products", "Containerization"],
-        link: "#"
+        link: "https://www.linkedin.com/learning/certificates/e9c209737e6b8172d0769350852248f4fe98070eb2da0f023f4d173867cdb357"
     },
     {
         name: "Atlassian Agile Project Management Professional Certificate",
@@ -348,7 +348,7 @@ export const certifications = [
         date: "Jan 2025",
         logo: "https://www.google.com/s2/favicons?domain=atlassian.com&sz=128",
         skills: ["Agile Project Management", "Project Management"],
-        link: "#"
+        link: "https://www.linkedin.com/learning/certificates/b9fbeb2922ca64aca9cb14d7c69c702116635876fe8303778d55dccb47a560fe?trk=share_certificate"
     },
     {
         name: "Getting Started with AI on Jetson Nano",
@@ -357,7 +357,7 @@ export const certifications = [
         logo: "https://www.google.com/s2/favicons?domain=nvidia.com&sz=128",
         skills: ["Artificial Intelligence (AI)"],
         credentialId: "441fc3908d374b969fe31d6b7e850022",
-        link: "#"
+        link: "https://courses.nvidia.com/certificates/441fc3908d374b969fe31d6b7e850022"
     },
     {
         name: "FUNDAMENTALS OF DEEP LEARNING",
@@ -366,7 +366,7 @@ export const certifications = [
         logo: "https://www.google.com/s2/favicons?domain=nvidia.com&sz=128",
         skills: ["Deep Learning"],
         credentialId: "614066ca7ee04870af5334a01ebc9346",
-        link: "#"
+        link: "https://courses.nvidia.com/certificates/614066ca7ee04870af5334a01ebc9346"
     }
 ];
 

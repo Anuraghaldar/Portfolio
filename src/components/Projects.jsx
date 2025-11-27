@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { projects } from '../data';
@@ -107,62 +107,103 @@ const ProjectCard = ({ project }) => (
 
 const Projects = () => {
     const [activeCategory, setActiveCategory] = useState("All");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
+
     const filteredProjects = projects.filter(p => {
         if (activeCategory === "All") return true;
         if (activeCategory === "Featured") return p.featured === true;
         return p.category === activeCategory;
     });
 
+    // Reset to page 1 when filter changes
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [activeCategory]);
+
+    const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedProjects = filteredProjects.slice(startIndex, startIndex + itemsPerPage);
+
     return (
         <section id="projects" className="py-20 bg-slate-950 relative">
             <div className="max-w-7xl mx-auto px-6">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-12"
-                >
-                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-                        My <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                            Work
-                        </span>
-                    </h2>
-                    <p className="text-slate-400 text-lg leading-relaxed max-w-3xl">
-                        Deployed scalable travel, event and telemedicine web and hybrid mobile apps using React SPA and PWA.
-                        Collaborated in 140+ projects with 50+ clients all around the world.
-                    </p>
-                </motion.div>
-
-                {/* Filter Tabs */}
-                <div className="flex flex-wrap gap-4 mb-12">
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            onClick={() => setActiveCategory(category)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category
-                                ? 'bg-white text-slate-950'
-                                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-                                }`}
-                        >
-                            {category} <span className="text-xs opacity-60 ml-1">
-                                {category === "All"
-                                    ? projects.length
-                                    : category === "Featured"
-                                    ? projects.filter(p => p.featured === true).length
-                                    : projects.filter(p => p.category === category).length}
+                {/* Sticky Header and Filters */}
+                <div className="sticky top-[80px] z-40 bg-slate-950/95 backdrop-blur-md pb-6 pt-4 -mt-4 -mx-6 px-6 mb-12 border-b border-slate-800/50">
+                    {/* Header */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="mb-8"
+                    >
+                        <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+                            My <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+                                Work
                             </span>
-                        </button>
-                    ))}
+                        </h2>
+                        <p className="text-slate-400 text-lg leading-relaxed max-w-3xl">
+                            Deployed scalable travel, event and telemedicine web and hybrid mobile apps using React SPA and PWA.
+                            Collaborated in 140+ projects with 50+ clients all around the world.
+                        </p>
+                    </motion.div>
+
+                    {/* Filter Tabs */}
+                    <div className="flex flex-wrap gap-4">
+                        {categories.map((category) => (
+                            <button
+                                key={category}
+                                onClick={() => setActiveCategory(category)}
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category
+                                    ? 'bg-white text-slate-950'
+                                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                                    }`}
+                            >
+                                {category} <span className="text-xs opacity-60 ml-1">
+                                    {category === "All"
+                                        ? projects.length
+                                        : category === "Featured"
+                                        ? projects.filter(p => p.featured === true).length
+                                        : projects.filter(p => p.category === category).length}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredProjects.map((project, index) => (
-                        <ProjectCard key={project.title} project={project} />
-                    ))}
+                {/* Projects Grid with Pagination */}
+                <div className="relative">
+                    <div className="flex gap-8">
+                        {/* Projects Grid */}
+                        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {paginatedProjects.map((project, index) => (
+                                <ProjectCard key={project.title} project={project} />
+                            ))}
+                        </div>
+
+                        {/* Vertical Pagination - Sticky */}
+                        {totalPages > 1 && (
+                            <div className="hidden lg:block w-10 flex-shrink-0">
+                                <div className="sticky top-[200px] flex flex-col items-center gap-2 z-30 h-fit">
+                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                        <button
+                                            key={page}
+                                            onClick={() => setCurrentPage(page)}
+                                            className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
+                                                currentPage === page
+                                                    ? 'bg-cyan-500 text-white scale-110'
+                                                    : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+                                            }`}
+                                        >
+                                            {page}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </section>

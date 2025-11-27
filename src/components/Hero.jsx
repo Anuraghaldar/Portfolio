@@ -41,11 +41,11 @@ const AnimatedCounter = ({ value, suffix = "", highlight = false, duration = 2, 
     return (
         <div className="flex flex-col">
             <div className="flex items-baseline gap-1">
-                <h3 className={`text-5xl md:text-6xl font-bold ${highlight ? 'text-cyan-400' : 'text-white'}`}>
+                <h3 className={`text-5xl md:text-6xl font-bold ${highlight ? 'text-cyan-400' : 'text-white'}`} style={{ opacity: 1, color: highlight ? 'rgb(34 211 238)' : 'rgb(255 255 255)' }}>
                     {count}
                 </h3>
                 {suffix && (
-                    <span className={`text-3xl md:text-4xl ${highlight ? 'text-cyan-400' : 'text-white'}`}>
+                    <span className={`text-3xl md:text-4xl ${highlight ? 'text-cyan-400' : 'text-white'}`} style={{ opacity: 1, color: highlight ? 'rgb(34 211 238)' : 'rgb(255 255 255)' }}>
                         {suffix}
                     </span>
                 )}
@@ -56,7 +56,7 @@ const AnimatedCounter = ({ value, suffix = "", highlight = false, duration = 2, 
 
 const Hero = () => {
     return (
-        <section id="hero" className="relative w-full min-h-screen bg-slate-950 overflow-hidden">
+        <section id="hero" className="relative w-full h-screen bg-slate-950 overflow-hidden">
             {/* Gradient Background */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
@@ -65,26 +65,26 @@ const Hero = () => {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 min-h-screen flex flex-col">
+            <div className="relative z-10 h-full flex flex-col justify-between py-20">
                 {/* Top Section - 50/50 Split Layout */}
-                <div className="flex-1 flex flex-col lg:flex-row items-center max-w-7xl mx-auto px-6 w-full py-20 lg:py-0">
+                <div className="flex flex-col lg:flex-row items-center max-w-7xl mx-auto px-6 w-full flex-1 min-h-0">
                     {/* Left Content - 50% */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center lg:pr-8 mb-12 lg:mb-0">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center lg:pr-8">
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight">
                                 {personalInfo.headline || "YOUR VISION, MY MISSION"}
                             </h1>
                             
-                            <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-8">
+                            <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-3">
                                 {personalInfo.mission || personalInfo.summary}
                             </p>
 
                             {/* CTA Buttons */}
-                            <div className="flex flex-wrap gap-4">
+                            <div className="flex flex-wrap gap-2">
                                 <motion.a
                                     href="#projects"
                                     whileHover={{ scale: 1.05 }}
@@ -234,24 +234,26 @@ const Hero = () => {
                 </div>
 
                 {/* Bottom Metrics Section - Visible on page load */}
-                <div className="border-t border-slate-800/50 py-8 lg:py-12">
+                <div className="border-t border-slate-800/50 pt-3 pb-4">
                     <div className="max-w-7xl mx-auto px-6">
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
                             {heroMetrics.map((metric, index) => (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
+                                    initial={{ y: 20 }}
+                                    animate={{ y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
-                                    className="text-center lg:text-left"
+                                    className="text-center lg:text-left opacity-100"
                                 >
-                                    <AnimatedCounter 
-                                        value={metric.value} 
-                                        suffix={metric.suffix} 
-                                        highlight={metric.highlight}
-                                        duration={2}
-                                        delay={0.8 + (index * 0.1)}
-                                    />
+                                    <div className="opacity-95">
+                                        <AnimatedCounter 
+                                            value={metric.value} 
+                                            suffix={metric.suffix} 
+                                            highlight={metric.highlight}
+                                            duration={2}
+                                            delay={0.8 + (index * 0.1)}
+                                        />
+                                    </div>
                                     <p className="text-slate-500 text-sm mt-2">{metric.label}</p>
                                 </motion.div>
                             ))}
