@@ -107,14 +107,14 @@ const Hero = () => {
                         </motion.div>
                     </div>
 
-                    {/* Right Image - 50% */}
-                    {personalInfo.heroImage && (
-                        <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-end">
+                    {/* Right Side - 50% */}
+                    <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-end relative">
+                        {personalInfo.heroImage ? (
                             <motion.div
                                 initial={{ opacity: 0, x: 50 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, delay: 0.4 }}
-                                className="relative w-full max-w-lg"
+                                className="relative w-full max-w-lg z-10"
                             >
                                 <div className="relative">
                                     {/* Gradient overlay on image */}
@@ -128,8 +128,109 @@ const Hero = () => {
                                     <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent rounded-b-2xl" />
                                 </div>
                             </motion.div>
+                        ) : (
+                            <div className="relative w-full h-full min-h-[400px] lg:min-h-[600px]" />
+                        )}
+                        
+                        {/* Northern Lights Gradient Animation */}
+                        <div className="absolute inset-0 right-0 top-0 bottom-0 overflow-hidden pointer-events-none z-0">
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950 z-10" />
+                            
+                            {/* Flowing Gradient Streams */}
+                            <motion.div
+                                className="absolute top-0 right-0 w-full h-full"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 2 }}
+                            >
+                                {/* Stream 1 - Cyan */}
+                                <motion.div
+                                    className="absolute top-0 right-[20%] w-32 h-full"
+                                    animate={{
+                                        background: [
+                                            'linear-gradient(180deg, rgba(6, 182, 212, 0.4) 0%, rgba(6, 182, 212, 0.2) 50%, transparent 100%)',
+                                            'linear-gradient(180deg, rgba(6, 182, 212, 0.6) 0%, rgba(6, 182, 212, 0.3) 50%, transparent 100%)',
+                                            'linear-gradient(180deg, rgba(6, 182, 212, 0.4) 0%, rgba(6, 182, 212, 0.2) 50%, transparent 100%)',
+                                        ],
+                                        x: [0, 20, -20, 0],
+                                    }}
+                                    transition={{
+                                        duration: 8,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                    style={{
+                                        filter: 'blur(40px)',
+                                    }}
+                                />
+                                
+                                {/* Stream 2 - Purple */}
+                                <motion.div
+                                    className="absolute top-0 right-[40%] w-40 h-full"
+                                    animate={{
+                                        background: [
+                                            'linear-gradient(180deg, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 100%)',
+                                            'linear-gradient(180deg, rgba(168, 85, 247, 0.5) 0%, rgba(168, 85, 247, 0.3) 50%, transparent 100%)',
+                                            'linear-gradient(180deg, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 100%)',
+                                        ],
+                                        x: [0, -30, 30, 0],
+                                    }}
+                                    transition={{
+                                        duration: 10,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                        delay: 1,
+                                    }}
+                                    style={{
+                                        filter: 'blur(50px)',
+                                    }}
+                                />
+                                
+                                {/* Stream 3 - Green/Cyan */}
+                                <motion.div
+                                    className="absolute top-0 right-[60%] w-36 h-full"
+                                    animate={{
+                                        background: [
+                                            'linear-gradient(180deg, rgba(34, 211, 238, 0.35) 0%, rgba(34, 211, 238, 0.2) 50%, transparent 100%)',
+                                            'linear-gradient(180deg, rgba(34, 211, 238, 0.55) 0%, rgba(34, 211, 238, 0.3) 50%, transparent 100%)',
+                                            'linear-gradient(180deg, rgba(34, 211, 238, 0.35) 0%, rgba(34, 211, 238, 0.2) 50%, transparent 100%)',
+                                        ],
+                                        x: [0, 25, -25, 0],
+                                    }}
+                                    transition={{
+                                        duration: 9,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                        delay: 2,
+                                    }}
+                                    style={{
+                                        filter: 'blur(45px)',
+                                    }}
+                                />
+                                
+                                {/* Splitting effect over metrics */}
+                                <motion.div
+                                    className="absolute bottom-0 right-0 w-full h-[200px]"
+                                    animate={{
+                                        background: [
+                                            'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.2) 0%, rgba(168, 85, 247, 0.15) 30%, transparent 70%)',
+                                            'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.3) 0%, rgba(168, 85, 247, 0.25) 30%, transparent 70%)',
+                                            'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.2) 0%, rgba(168, 85, 247, 0.15) 30%, transparent 70%)',
+                                        ],
+                                        scale: [1, 1.1, 1],
+                                    }}
+                                    transition={{
+                                        duration: 6,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                    style={{
+                                        filter: 'blur(60px)',
+                                    }}
+                                />
+                            </motion.div>
                         </div>
-                    )}
+                    </div>
                 </div>
 
                 {/* Bottom Metrics Section - Visible on page load */}
