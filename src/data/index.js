@@ -9,7 +9,47 @@ export const personalInfo = {
     email: "er.pritamdas22@gmail.com",
     linkedin: "https://linkedin.com/in/er-pritamdas",
     github: "https://github.com/er-pritamdas",
+    portrait: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80", // Add your portrait image URL here
+    heroImage: "", // Add your hero section image URL here
+    headline: "YOUR VISION, MY MISSION",
+    mission: "Guiding the Creative Journey Together, Your Aspirations at the Heart of Every Design - Where Your Unique Dreams Meet My Dedication to Craft Exceptional Visual Experiences",
+    ctaPrimary: "Explore My Portfolio",
+    ctaSecondary: "Hire Me",
 };
+
+// Hero Section Metrics - Edit these values to update the UI
+export const heroMetrics = [
+    {
+        value: 2.5,
+        suffix: "+",
+        label: "Years of Experience",
+        highlight: false // Set to true to highlight a specific metric
+    },
+    {
+        value: 4,
+        suffix: "+",
+        label: "Projects Completed",
+        highlight: false
+    },
+    {
+        value: 95,
+        suffix: "%",
+        label: "Client Satisfaction Rate",
+        highlight: true // This will show the % in cyan color
+    },
+    // {
+    //     value: 8,
+    //     suffix: "+",
+    //     label: "Technologies Mastered",
+    //     highlight: false
+    // },
+    {
+        value: 8,
+        suffix: "+",
+        label: "Blogs Written",
+        highlight: false
+    }
+];
 
 export const skills = {
     DevOps: [
@@ -145,6 +185,8 @@ export const projects = [
         category: "Web Development",
         image: "https://media.licdn.com/dms/image/v2/D5622AQFrkAd5H1VEww/feedshare-shrink_1280/B56Zn6w2DFHUAs-/0/1760848733533?e=1766016000&v=beta&t=U5xdjWKgKnsX3qwveWj7KTTD86imoT906v82Nb6ndLw",
         featured: true,
+        link: "#",
+        github: "https://github.com/er-pritamdas",
     },
     {
         title: "RAG Chatbot",
@@ -154,6 +196,8 @@ export const projects = [
         category: "AI Automation",
         image: "https://media.licdn.com/dms/image/v2/D5622AQGWaAfOd70iPA/feedshare-shrink_1280/B56Zi4OowKHQAk-/0/1755437502304?e=1766016000&v=beta&t=JO4TtA4QbcD_c6gn0lytT46SvlZ6ZaEMQwSZaJqpHSA",
         featured: false,
+        link: "#",
+        github: "https://github.com/er-pritamdas",
     },
     {
         title: "MCP Server Integration",
@@ -163,6 +207,8 @@ export const projects = [
         category: "DevOps",
         image: "https://media.licdn.com/dms/image/v2/D5622AQEPLOFuTTiHjw/feedshare-shrink_2048_1536/B56Zja5sf2HAAw-/0/1756019216070?e=1766016000&v=beta&t=vfxqyBP9M4mfRmMyHXeTPZB507U133ZeHRkD2LO5jpw",
         featured: false,
+        link: "#",
+        github: "https://github.com/er-pritamdas",
     },
     {
         title: "AI Agent for ATS",
@@ -172,7 +218,86 @@ export const projects = [
         category: "AI Automation",
         image: "https://media.licdn.com/dms/image/v2/D5622AQHDP79OncMBxA/feedshare-shrink_2048_1536/B56ZiUD3HQHkAw-/0/1754830697716?e=1766016000&v=beta&t=gMqamR6yxOVH3ba9ikiLrL69CwgBK7EtraTtd5Akp0k",
         featured: false,
+        link: "#",
+        github: "https://github.com/er-pritamdas",
     },
+    // {
+    //     title: "Network Configuration Automation Tool",
+    //     subtitle: "Multi-Vendor Device Management",
+    //     tech: ["Python", "Netmiko", "Ansible", "REST API"],
+    //     description: "Automated configuration management for Cisco, Juniper, and Arista devices with rollback capabilities and validation.",
+    //     category: "DevOps",
+    //     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+    //     featured: false,
+    //     link: "#",
+    //     github: "https://github.com/er-pritamdas",
+    // },
+    // {
+    //     title: "Cloud Infrastructure Dashboard",
+    //     subtitle: "Real-time Monitoring & Analytics",
+    //     tech: ["React", "Node.js", "AWS", "Grafana", "Prometheus"],
+    //     description: "Comprehensive dashboard for monitoring cloud infrastructure with real-time metrics, alerts, and cost optimization insights.",
+    //     category: "Web Development",
+    //     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    //     featured: false,
+    //     link: "#",
+    //     github: "https://github.com/er-pritamdas",
+    // },
+    // {
+    //     title: "CI/CD Pipeline Optimizer",
+    //     subtitle: "Build Time Reduction System",
+    //     tech: ["Jenkins", "Docker", "Kubernetes", "Groovy"],
+    //     description: "Optimized CI/CD pipelines reducing build times by 60% through parallel execution, caching strategies, and resource optimization.",
+    //     category: "DevOps",
+    //     image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&q=80",
+    //     featured: false,
+    //     link: "#",
+    //     github: "https://github.com/er-pritamdas",
+    // },
+    // {
+    //     title: "Intelligent Document Processor",
+    //     subtitle: "AI-Powered Document Analysis",
+    //     tech: ["Python", "OpenAI", "FastAPI", "PostgreSQL"],
+    //     description: "AI-powered system that extracts, categorizes, and analyzes documents with natural language processing and machine learning.",
+    //     category: "AI Automation",
+    //     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    //     featured: false,
+    //     link: "#",
+    //     github: "https://github.com/er-pritamdas",
+    // },
+    // {
+    //     title: "Microservices Architecture Platform",
+    //     subtitle: "Scalable Service Mesh",
+    //     tech: ["Kubernetes", "Istio", "gRPC", "React", "Go"],
+    //     description: "Built a microservices platform with service mesh, API gateway, and distributed tracing for high-performance applications.",
+    //     category: "Web Development",
+    //     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+    //     featured: false,
+    //     link: "#",
+    //     github: "https://github.com/er-pritamdas",
+    // },
+    // {
+    //     title: "Infrastructure as Code Framework",
+    //     subtitle: "Terraform Module Library",
+    //     tech: ["Terraform", "Azure", "AWS", "GitHub Actions"],
+    //     description: "Comprehensive Terraform module library for provisioning cloud infrastructure across multiple providers with best practices.",
+    //     category: "DevOps",
+    //     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+    //     featured: false,
+    //     link: "#",
+    //     github: "https://github.com/er-pritamdas",
+    // },
+    // {
+    //     title: "Workflow Automation Engine",
+    //     subtitle: "No-Code Automation Platform",
+    //     tech: ["n8n", "Node.js", "MongoDB", "WebSockets"],
+    //     description: "Built a visual workflow automation platform allowing users to create complex automation workflows without coding.",
+    //     category: "AI Automation",
+    //     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80",
+    //     featured: false,
+    //     link: "#",
+    //     github: "https://github.com/er-pritamdas",
+    // },
 ];
 
 export const education = [
@@ -243,4 +368,95 @@ export const certifications = [
         credentialId: "614066ca7ee04870af5334a01ebc9346",
         link: "#"
     }
+];
+
+export const blogs = [
+    {
+        topic: "Building Scalable CI/CD Pipelines with Jenkins and Docker",
+        subtitle: "A comprehensive guide to automating your deployment workflow",
+        date: "Dec 2024",
+        category: "DevOps",
+        image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&q=80",
+        tech: ["Jenkins", "Docker", "CI/CD", "Kubernetes"],
+        link: "https://medium.com/@er.pritamdas22/scalable-cicd-pipelines",
+        description: "Learn how to set up robust CI/CD pipelines using Jenkins and Docker. This guide covers containerization strategies, automated testing, and deployment best practices for modern applications.",
+        featured: true
+    },
+    {
+        topic: "Mastering Network Automation with Python",
+        subtitle: "Automate network configurations and reduce manual errors by 90%",
+        date: "Nov 2024",
+        category: "Network Engineering",
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+        tech: ["Python", "Ansible", "Netmiko", "SD-WAN"],
+        link: "https://medium.com/@er.pritamdas22/network-automation-python",
+        description: "Discover how Python can revolutionize network management. From automating device configurations to implementing SD-WAN solutions, this blog walks you through real-world automation scenarios.",
+        featured: false
+    },
+    {
+        topic: "RAG Architecture: Building Intelligent Document Assistants",
+        subtitle: "Implementing Retrieval-Augmented Generation for enterprise knowledge bases",
+        date: "Oct 2024",
+        category: "AI Automation",
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+        tech: ["RAG", "Gemini AI", "Pinecone", "Vector Databases"],
+        link: "https://medium.com/@er.pritamdas22/rag-architecture-guide",
+        description: "Deep dive into RAG (Retrieval-Augmented Generation) architecture. Learn how to build intelligent chatbots that can query company documents, understand context, and provide accurate responses using AI.",
+        featured: false
+    },
+    {
+        topic: "Full Stack Development: MERN Stack Best Practices",
+        subtitle: "Building production-ready applications with React, Node.js, and MongoDB",
+        date: "Sep 2024",
+        category: "Web Development",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+        tech: ["React", "Node.js", "MongoDB", "Express", "Redux"],
+        link: "https://medium.com/@er.pritamdas22/mern-stack-best-practices",
+        description: "Explore the MERN stack architecture and learn best practices for building scalable full-stack applications. From state management to API design, this guide covers everything you need.",
+        featured: false
+    },
+    {
+        topic: "Terraform for Infrastructure as Code",
+        subtitle: "Managing cloud infrastructure efficiently with Terraform",
+        date: "Aug 2024",
+        category: "DevOps",
+        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+        tech: ["Terraform", "Azure", "AWS", "Infrastructure as Code"],
+        link: "https://medium.com/@er.pritamdas22/terraform-infrastructure-code",
+        description: "Master Infrastructure as Code with Terraform. This comprehensive guide covers provisioning cloud resources, managing state files, and implementing best practices for scalable infrastructure.",
+        featured: false
+    },
+    {
+        topic: "AI Agents: Automating Workflows with MCP Servers",
+        subtitle: "Integrating AI assistants with development tools for enhanced productivity",
+        date: "Jul 2024",
+        category: "AI Automation",
+        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80",
+        tech: ["MCP", "Claude", "VSCode Copilot", "AI Agents"],
+        link: "https://medium.com/@er.pritamdas22/ai-agents-mcp-servers",
+        description: "Learn how to integrate MCP (Model Context Protocol) servers with AI assistants like Claude and Copilot. Automate your development workflows and boost productivity with intelligent agents.",
+        featured: false
+    },
+    {
+        topic: "SD-WAN and SASE: The Future of Network Security",
+        subtitle: "Understanding Software-Defined Wide Area Networks and Secure Access Service Edge",
+        date: "Jun 2024",
+        category: "Network Engineering",
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+        tech: ["SD-WAN", "SASE", "Network Security", "Cloud Networking"],
+        link: "https://medium.com/@er.pritamdas22/sdwan-sase-future",
+        description: "Explore the evolution of network architecture with SD-WAN and SASE technologies. Understand how these solutions provide secure, scalable, and flexible network connectivity for modern enterprises.",
+        featured: false
+    },
+    {
+        topic: "Docker and Kubernetes: Container Orchestration Mastery",
+        subtitle: "From containerization to orchestration - a complete guide",
+        date: "May 2024",
+        category: "DevOps",
+        image: "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&q=80",
+        tech: ["Docker", "Kubernetes", "Containerization", "Orchestration"],
+        link: "https://medium.com/@er.pritamdas22/docker-kubernetes-guide",
+        description: "Master containerization and orchestration with Docker and Kubernetes. Learn deployment strategies, scaling techniques, and how to manage containerized applications in production environments.",
+        featured: false
+    },
 ];

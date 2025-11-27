@@ -1,66 +1,161 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import Background from './3d/Background';
-import ThreeHeroModel from './ThreeHeroModel';
-import { personalInfo, experience } from '../data';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { personalInfo, heroMetrics } from '../data';
 
-const Hero = () => {
-    // Get unique companies from experience
-    const companies = experience.map(exp => ({
-        name: exp.company,
-        logo: exp.logo
-    })).filter((v, i, a) => a.findIndex(t => (t.name === v.name)) === i);
+// Animated Counter Component - Starts immediately on page load
+const AnimatedCounter = ({ value, suffix = "", highlight = false, duration = 2, delay = 0 }) => {
+    const [count, setCount] = useState(0);
+    const [hasStarted, setHasStarted] = useState(false);
+
+    useEffect(() => {
+        // Start animation after a small delay
+        const timer = setTimeout(() => {
+            setHasStarted(true);
+        }, delay * 1000);
+
+        return () => clearTimeout(timer);
+    }, [delay]);
+
+    useEffect(() => {
+        if (!hasStarted) return;
+
+        let startTime = null;
+        const animate = (currentTime) => {
+            if (!startTime) startTime = currentTime;
+            const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+            
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            setCount(Math.floor(easeOutQuart * value * 10) / 10);
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                setCount(value);
+            }
+        };
+
+        requestAnimationFrame(animate);
+    }, [hasStarted, value, duration]);
 
     return (
-        <section id="hero" className="relative w-full h-screen bg-slate-950 overflow-hidden">
-            {/* Star field background */}
-            <Background />
+        <div className="flex flex-col">
+            <div className="flex items-baseline gap-1">
+                <h3 className={`text-5xl md:text-6xl font-bold ${highlight ? 'text-cyan-400' : 'text-white'}`}>
+                    {count}
+                </h3>
+                {suffix && (
+                    <span className={`text-3xl md:text-4xl ${highlight ? 'text-cyan-400' : 'text-white'}`}>
+                        {suffix}
+                    </span>
+                )}
+            </div>
+        </div>
+    );
+};
 
-            {/* Globe - covers entire section, positioned to the right */}
-            <ThreeHeroModel globeSize={6} offsetX={6} />
+const Hero = () => {
+    return (
+        <section id="hero" className="relative w-full min-h-screen bg-slate-950 overflow-hidden">
+            {/* Gradient Background */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-950/98 to-slate-950" />
+            </div>
 
-            {/* Content overlay */}
-            <div className="relative z-10 h-full flex flex-col justify-center items-center pointer-events-none">
-                <div className="max-w-7xl mx-auto px-6 w-full text-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="pointer-events-auto"
-                    >
-                        <h1 className="text-7xl md:text-9xl font-bold text-white tracking-tighter mb-2 leading-none">
-                            PRITAM
-                        </h1>
-                        <h1 className="text-7xl md:text-9xl font-bold text-white tracking-tighter mb-8 leading-none">
-                            DAS
-                        </h1>
-
-                        <p className="text-sm md:text-base text-cyan-400 font-medium tracking-[0.3em] uppercase mb-12">
-                            Full Stack Developer • DevOps Engineer • AI Automation Specialist • Network Engineer
-                        </p>
-
+            {/* Main Content */}
+            <div className="relative z-10 min-h-screen flex flex-col">
+                {/* Top Section - 50/50 Split Layout */}
+                <div className="flex-1 flex flex-col lg:flex-row items-center max-w-7xl mx-auto px-6 w-full py-20 lg:py-0">
+                    {/* Left Content - 50% */}
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center lg:pr-8 mb-12 lg:mb-0">
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5 }}
-                            className="flex flex-col items-center gap-4"
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            <span className="text-slate-500 text-xs tracking-widest uppercase mb-4">Worked With</span>
-                            <div className="flex flex-wrap justify-center gap-8 md:gap-12 items-center">
-                                {companies.map((company, index) => (
-                                    company.logo && (
-                                        <div key={index} className="group relative w-32 h-16 md:w-40 md:h-20 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-50 hover:opacity-100">
-                                            <img
-                                                src={company.logo}
-                                                alt={company.name}
-                                                className="max-w-full max-h-full object-contain"
-                                            />
-                                        </div>
-                                    )
-                                ))}
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                                {personalInfo.headline || "YOUR VISION, MY MISSION"}
+                            </h1>
+                            
+                            <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-8">
+                                {personalInfo.mission || personalInfo.summary}
+                            </p>
+
+                            {/* CTA Buttons */}
+                            <div className="flex flex-wrap gap-4">
+                                <motion.a
+                                    href="#projects"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="flex items-center gap-2 bg-white text-slate-950 px-6 py-3 rounded-lg font-semibold hover:bg-cyan-400 transition-colors"
+                                >
+                                    {personalInfo.ctaPrimary || "Explore My Portfolio"}
+                                    <ArrowRight size={20} />
+                                </motion.a>
+                                <motion.a
+                                    href="#contact"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="flex items-center gap-2 bg-slate-900/50 border border-slate-800 text-white px-6 py-3 rounded-lg font-semibold hover:border-cyan-500/50 hover:text-cyan-400 transition-colors"
+                                >
+                                    {personalInfo.ctaSecondary || "Hire Me"}
+                                    <ArrowRight size={20} />
+                                </motion.a>
                             </div>
                         </motion.div>
-                    </motion.div>
+                    </div>
+
+                    {/* Right Image - 50% */}
+                    {personalInfo.heroImage && (
+                        <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-end">
+                            <motion.div
+                                initial={{ opacity: 0, x: 50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8, delay: 0.4 }}
+                                className="relative w-full max-w-lg"
+                            >
+                                <div className="relative">
+                                    {/* Gradient overlay on image */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-cyan-500/20 rounded-2xl blur-2xl" />
+                                    <img
+                                        src={personalInfo.heroImage}
+                                        alt={personalInfo.name}
+                                        className="relative w-full h-auto rounded-2xl object-cover shadow-2xl"
+                                    />
+                                    {/* Fade effect at bottom */}
+                                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent rounded-b-2xl" />
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Bottom Metrics Section - Visible on page load */}
+                <div className="border-t border-slate-800/50 py-8 lg:py-12">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+                            {heroMetrics.map((metric, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
+                                    className="text-center lg:text-left"
+                                >
+                                    <AnimatedCounter 
+                                        value={metric.value} 
+                                        suffix={metric.suffix} 
+                                        highlight={metric.highlight}
+                                        duration={2}
+                                        delay={0.8 + (index * 0.1)}
+                                    />
+                                    <p className="text-slate-500 text-sm mt-2">{metric.label}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -69,9 +164,9 @@ const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 1.5 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+                className="absolute bottom-10 right-10 z-10"
             >
-                <a href="#about" className="pointer-events-auto">
+                <a href="#skills" className="pointer-events-auto">
                     <div className="w-[30px] h-[50px] rounded-full border-2 border-slate-600 flex justify-center items-start p-2">
                         <motion.div
                             animate={{ y: [0, 12, 0] }}
@@ -85,9 +180,6 @@ const Hero = () => {
                     </div>
                 </a>
             </motion.div>
-
-            {/* Gradient overlay */}
-            <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-slate-950 to-transparent z-10" />
         </section>
     );
 };

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Award, CheckCircle } from 'lucide-react';
 import { certifications } from '../data';
 
 const Certifications = () => {
+    const [selectedTag, setSelectedTag] = useState('All');
+
+    // Get unique tags/skills from all certifications
+    const allTags = ['All', ...new Set(certifications.flatMap(cert => cert.skills))];
+
+    // Filter certifications by selected tag
+    const filteredCertifications = selectedTag === 'All'
+        ? certifications
+        : certifications.filter(cert => cert.skills.includes(selectedTag));
+
     return (
         <section id="certifications" className="py-20 bg-slate-950 relative">
             <div className="max-w-7xl mx-auto px-6">
@@ -20,8 +30,25 @@ const Certifications = () => {
                     </h2>
                 </motion.div>
 
+                {/* Tag Filters */}
+                <div className="flex flex-wrap gap-3 justify-center mb-12">
+                    {allTags.map((tag) => (
+                        <button
+                            key={tag}
+                            onClick={() => setSelectedTag(tag)}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                                selectedTag === tag
+                                    ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/50'
+                                    : 'bg-slate-900/50 text-slate-400 border border-slate-800 hover:text-cyan-400 hover:border-cyan-500/30'
+                            }`}
+                        >
+                            {tag}
+                        </button>
+                    ))}
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {certifications.map((cert, index) => (
+                    {filteredCertifications.map((cert, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -107,6 +134,12 @@ const Certifications = () => {
                         </motion.div>
                     ))}
                 </div>
+
+                {filteredCertifications.length === 0 && (
+                    <div className="text-center py-12">
+                        <p className="text-slate-500">No certifications found for this tag.</p>
+                    </div>
+                )}
             </div>
         </section>
     );

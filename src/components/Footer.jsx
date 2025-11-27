@@ -30,10 +30,10 @@ const Footer = () => {
 
     const navLinks = [
         { name: 'Home', href: '#hero' },
-        { name: 'About', href: '#about' },
         { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#projects' },
         { name: 'Skills', href: '#skills' },
+        { name: 'Blogs', href: '#blogs' },
         { name: 'Contact', href: '#contact' },
     ];
 
@@ -47,16 +47,17 @@ const Footer = () => {
 
     return (
         <footer className="relative bg-slate-950 border-t border-slate-900 overflow-hidden">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+            {/* Static Gradient Background - Higher z-index to override cursor gradient */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-[2]">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-500/12 via-purple-500/10 to-transparent" />
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
             </div>
 
             {/* Grid Pattern Overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20 z-[2]" />
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
+            <div className="relative z-[3] max-w-7xl mx-auto px-6 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                     {/* Brand Section */}
                     <motion.div

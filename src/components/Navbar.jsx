@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('hero');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,13 +15,49 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        const sections = ['hero', 'experience', 'projects', 'certifications', 'blogs', 'contact'];
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observers = sections.map((sectionId) => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const observer = new IntersectionObserver(observerCallback, observerOptions);
+                observer.observe(element);
+                return observer;
+            }
+            return null;
+        });
+
+        return () => {
+            observers.forEach((observer) => {
+                if (observer) {
+                    observer.disconnect();
+                }
+            });
+        };
+    }, []);
+
     const navLinks = [
-        { name: '// 01 home', href: '#hero' },
-        { name: '// 02 about', href: '#about' },
-        { name: '// 03 experience', href: '#experience' },
-        { name: '// 04 work', href: '#projects' },
-        { name: '// 05 certifications', href: '#certifications' },
-        { name: '// 06 contact', href: '#contact' },
+        { name: '// 01 home', href: '#hero', id: 'hero' },
+        { name: '// 02 experience', href: '#experience', id: 'experience' },
+        { name: '// 03 work', href: '#projects', id: 'projects' },
+        { name: '// 04 certifications', href: '#certifications', id: 'certifications' },
+        { name: '// 05 blogs', href: '#blogs', id: 'blogs' },
+        { name: '// 06 contact', href: '#contact', id: 'contact' },
     ];
 
     return (
@@ -39,7 +76,11 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            className="text-slate-400 hover:text-cyan-400 transition-colors text-sm font-medium tracking-wide"
+                            className={`transition-colors text-sm font-medium tracking-wide ${
+                                activeSection === link.id
+                                    ? 'text-cyan-400'
+                                    : 'text-slate-400 hover:text-cyan-400'
+                            }`}
                         >
                             {link.name}
                         </a>
@@ -69,7 +110,11 @@ const Navbar = () => {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    className="text-slate-300 hover:text-cyan-400 text-lg font-medium"
+                                    className={`text-lg font-medium transition-colors ${
+                                        activeSection === link.id
+                                            ? 'text-cyan-400'
+                                            : 'text-slate-300 hover:text-cyan-400'
+                                    }`}
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}
