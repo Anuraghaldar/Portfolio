@@ -6,7 +6,7 @@ import { certifications } from '../data';
 const Certifications = () => {
     const [selectedTag, setSelectedTag] = useState('All');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 4;
 
     // Get unique tags/skills from all certifications
     const allTags = ['All', ...new Set(certifications.flatMap(cert => cert.skills))];

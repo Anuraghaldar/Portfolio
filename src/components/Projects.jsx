@@ -108,7 +108,7 @@ const ProjectCard = ({ project }) => (
 const Projects = () => {
     const [activeCategory, setActiveCategory] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 3;
 
     const filteredProjects = projects.filter(p => {
         if (activeCategory === "All") return true;

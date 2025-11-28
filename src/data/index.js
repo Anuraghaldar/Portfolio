@@ -367,7 +367,17 @@ export const certifications = [
         skills: ["Deep Learning"],
         credentialId: "614066ca7ee04870af5334a01ebc9346",
         link: "https://courses.nvidia.com/certificates/614066ca7ee04870af5334a01ebc9346"
-    }
+    },
+    // {
+    //     name: "FUNDAMENTALS OF DEEP LEARNING",
+    //     issuer: "NVIDIA",
+    //     date: "Jan 2022",
+    //     logo: "https://www.google.com/s2/favicons?domain=microsoft.com&sz=128",
+    //     skills: ["Deep Learning"],
+    //     credentialId: "614066ca7ee04870af5334a01ebc9346",
+    //     link: "https://courses.nvidia.com/certificates/614066ca7ee04870af5334a01ebc9346"
+    // },
+
 ];
 
 export const blogs = [

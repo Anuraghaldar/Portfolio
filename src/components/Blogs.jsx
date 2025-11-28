@@ -6,7 +6,7 @@ import { blogs } from '../data';
 const Blogs = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 3;
 
     // Get unique categories
     const categories = ['All', 'Featured', ...new Set(blogs.map(blog => blog.category))];
