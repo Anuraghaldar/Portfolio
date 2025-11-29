@@ -42,7 +42,7 @@ const Contact = () => {
 
         try {
             // Replace with your actual backend URL if deployed
-            const response = await fetch('https://portfolio-i92o.onrender.com/contact/send-message', {
+            const response = await fetch('https://portfolio-i92o.onrender.com/api/v1/contact/send-message', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
