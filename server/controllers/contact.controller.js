@@ -14,7 +14,7 @@ const sendContactMail = asyncHandler(async (req, res) => {
 
   // 2. Build Email Template
   const mailOptions = {
-    from: process.env.SMTP_USER, // Sender address (authenticated user)
+    from: process.env.SMTP_USER, // Sender address (must be verified in SendGrid for production)
     to: process.env.CONTACT_EMAIL,   // Receiver address (yourself)
     replyTo: email,               // Reply to the user
     subject: `New Portfolio Contact: ${name} ${subject ? `- ${subject}` : ''}`,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2, Linkedin, Github } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { personalInfo } from '../data';
 
@@ -79,49 +79,115 @@ const Contact = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <p className="text-cyan-400 text-sm uppercase tracking-wider mb-2">Get in touch</p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">Contact.</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact.</h2>
+                    <p className="text-slate-300 text-lg mb-12">
+                        I'm currently open to new opportunities. Whether you have a question or just want to say hi, feel free to reach out!
+                    </p>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        {/* Contact Info */}
-                        <div className="space-y-8">
-                            <p className="text-slate-300 text-lg">
-                                I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-                            </p>
-
-                            <div className="space-y-6">
-                                <div className="flex items-center space-x-4 text-slate-300">
-                                    <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-slate-800 text-cyan-400">
-                                        <Mail size={24} />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-slate-500">Email</p>
-                                        <a href={`mailto:${personalInfo.email}`} className="text-white hover:text-cyan-400 transition-colors">
-                                            {personalInfo.email}
-                                        </a>
-                                    </div>
+                    {/* Direct Contact Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                        {/* Email Card */}
+                        <motion.a
+                            href={`mailto:${personalInfo.email}`}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="group relative bg-gradient-to-br from-cyan-500/10 to-blue-500/10 p-6 rounded-2xl border border-cyan-500/30 hover:border-cyan-500 transition-all hover:scale-105"
+                        >
+                            <div className="flex flex-col items-center text-center space-y-3">
+                                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center border border-cyan-500/50 group-hover:bg-cyan-500/30 transition-colors">
+                                    <Mail size={32} className="text-cyan-400" />
                                 </div>
-
-                                <div className="flex items-center space-x-4 text-slate-300">
-                                    <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-slate-800 text-cyan-400">
-                                        <Phone size={24} />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-slate-500">Phone</p>
-                                        <p className="text-white">{personalInfo.phone}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center space-x-4 text-slate-300">
-                                    <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-slate-800 text-cyan-400">
-                                        <MapPin size={24} />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-slate-500">Location</p>
-                                        <p className="text-white">{personalInfo.location}</p>
-                                    </div>
+                                <div>
+                                    <p className="text-sm text-slate-400 mb-1">Email Me</p>
+                                    <p className="text-white font-medium group-hover:text-cyan-400 transition-colors break-all">
+                                        {personalInfo.email}
+                                    </p>
                                 </div>
                             </div>
+                        </motion.a>
+
+                        {/* LinkedIn Card */}
+                        <motion.a
+                            href={personalInfo.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="group relative bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-6 rounded-2xl border border-blue-500/30 hover:border-blue-500 transition-all hover:scale-105"
+                        >
+                            <div className="flex flex-col items-center text-center space-y-3">
+                                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/50 group-hover:bg-blue-500/30 transition-colors">
+                                    <Linkedin size={32} className="text-blue-400" />
+                                </div>
+                                <div>
+                                    <p className="text-sm text-slate-400 mb-1">Connect on LinkedIn</p>
+                                    <p className="text-white font-medium group-hover:text-blue-400 transition-colors">
+                                        @er-pritamdas
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.a>
+
+                        {/* GitHub Card */}
+                        <motion.a
+                            href={personalInfo.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            className="group relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-6 rounded-2xl border border-purple-500/30 hover:border-purple-500 transition-all hover:scale-105"
+                        >
+                            <div className="flex flex-col items-center text-center space-y-3">
+                                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center border border-purple-500/50 group-hover:bg-purple-500/30 transition-colors">
+                                    <Github size={32} className="text-purple-400" />
+                                </div>
+                                <div>
+                                    <p className="text-sm text-slate-400 mb-1">View My Code</p>
+                                    <p className="text-white font-medium group-hover:text-purple-400 transition-colors">
+                                        @er-pritamdas
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.a>
+                    </div>
+
+                    {/* Additional Contact Info */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                        <div className="flex items-center space-x-4 text-slate-300 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                            <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-slate-800 text-cyan-400 flex-shrink-0">
+                                <Phone size={24} />
+                            </div>
+                            <div>
+                                <p className="text-sm text-slate-500">Phone</p>
+                                <a href={`tel:${personalInfo.phone}`} className="text-white hover:text-cyan-400 transition-colors">
+                                    {personalInfo.phone}
+                                </a>
+                            </div>
                         </div>
+
+                        <div className="flex items-center space-x-4 text-slate-300 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                            <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-slate-800 text-cyan-400 flex-shrink-0">
+                                <MapPin size={24} />
+                            </div>
+                            <div>
+                                <p className="text-sm text-slate-500">Location</p>
+                                <p className="text-white">{personalInfo.location}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Optional Contact Form - Hidden by default */}
+                    <details className="group">
+                        <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 transition-colors mb-6 flex items-center gap-2">
+                            <span>Or send me a message directly</span>
+                            <span className="text-xs">(click to expand)</span>
+                        </summary>
 
                         {/* Contact Form */}
                         <form onSubmit={handleSubmit} className="bg-slate-900/50 p-8 rounded-2xl border border-slate-800 backdrop-blur-sm">
@@ -197,7 +263,7 @@ const Contact = () => {
                                 </button>
                             </div>
                         </form>
-                    </div>
+                    </details>
                 </motion.div>
             </div>
         </section>

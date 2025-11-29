@@ -34,26 +34,28 @@ const ProjectCard = ({ project }) => (
             </div>
             <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-30">
                 {project.github && (
-                    <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-3 bg-white/10 rounded-full hover:bg-white/20 text-white backdrop-blur-sm transition-colors"
+                    <div
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(project.github, '_blank', 'noopener,noreferrer');
+                        }}
+                        className="p-3 bg-white/10 rounded-full hover:bg-white/20 text-white backdrop-blur-sm transition-colors cursor-pointer"
                     >
                         <Github size={20} />
-                    </a>
+                    </div>
                 )}
                 {project.link && (
-                    <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-3 bg-cyan-500/80 rounded-full hover:bg-cyan-500 text-white backdrop-blur-sm transition-colors"
+                    <div
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(project.link, '_blank', 'noopener,noreferrer');
+                        }}
+                        className="p-3 bg-cyan-500/80 rounded-full hover:bg-cyan-500 text-white backdrop-blur-sm transition-colors cursor-pointer"
                     >
                         <ExternalLink size={20} />
-                    </a>
+                    </div>
                 )}
             </div>
         </div>
