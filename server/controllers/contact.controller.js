@@ -5,20 +5,20 @@ import { logger } from "../utils/logger.js";
 import { transporter } from "../utils/mailer.js";
 
 const sendContactMail = asyncHandler(async (req, res) => {
-    const { name, email, phone, message, subject } = req.body;
+  const { name, email, phone, message, subject } = req.body;
 
-    // 1. Validation
-    if (!name || !email || !message) {
-        throw new ApiError(400, "Name, email, and message are required fields");
-    }
+  // 1. Validation
+  if (!name || !email || !message) {
+    throw new ApiError(400, "Name, email, and message are required fields");
+  }
 
-    // 2. Build Email Template
-    const mailOptions = {
-        from: process.env.EMAIL_USER, // Sender address (authenticated user)
-        to: process.env.EMAIL_USER,   // Receiver address (yourself)
-        replyTo: email,               // Reply to the user
-        subject: `New Portfolio Contact: ${name} ${subject ? `- ${subject}` : ''}`,
-        html: `
+  // 2. Build Email Template
+  const mailOptions = {
+    from: process.env.SMTP_USER, // Sender address (authenticated user)
+    to: process.env.CONTACT_EMAIL,   // Receiver address (yourself)
+    replyTo: email,               // Reply to the user
+    subject: `New Portfolio Contact: ${name} ${subject ? `- ${subject}` : ''}`,
+    html: `
       <!DOCTYPE html>
       <html>
       <head>
@@ -129,21 +129,21 @@ const sendContactMail = asyncHandler(async (req, res) => {
       </body>
       </html>
     `,
-    };
+  };
 
-    // 3. Send Email
-    try {
-        const info = await transporter.sendMail(mailOptions);
-        logger.info(`Email sent: ${info.messageId}`);
-    } catch (error) {
-        logger.error(`Email sending failed: ${error.message}`);
-        throw new ApiError(500, "Failed to send email. Please try again later.");
-    }
+  // 3. Send Email
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    logger.info(`Email sent: ${info.messageId}`);
+  } catch (error) {
+    logger.error(`Email sending failed: ${error.message}`);
+    throw new ApiError(500, "Failed to send email. Please try again later.");
+  }
 
-    // 4. Send Response
-    return res.status(200).json(
-        new ApiResponse(200, {}, "Message delivered successfully.")
-    );
+  // 4. Send Response
+  return res.status(200).json(
+    new ApiResponse(200, {}, "Message delivered successfully.")
+  );
 });
 
 export { sendContactMail };
