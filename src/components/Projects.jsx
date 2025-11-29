@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { projects } from '../data';
 
-const categories = ["All", "Featured", "Web Development", "AI Automation", "DevOps"];
+const categories = ["All", "Web Development", "AI Automation", "DevOps"];
 
 const ProjectCard = ({ project }) => (
     <a
         href={project.link || "#"}
         target={project.link ? "_blank" : undefined}
         rel={project.link ? "noopener noreferrer" : undefined}
-        className={`group relative rounded-2xl overflow-hidden transition-all h-full flex flex-col cursor-pointer ${
-            project.featured 
-                ? 'bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20' 
-                : 'bg-slate-900/50 border border-slate-800 hover:border-cyan-500/50'
-        }`}
+        className={`group relative rounded-2xl overflow-hidden transition-all h-full flex flex-col cursor-pointer ${project.featured
+            ? 'bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20'
+            : 'bg-slate-900/50 border border-slate-800 hover:border-cyan-500/50'
+            }`}
     >
         <div className="relative w-full h-48 overflow-hidden bg-slate-800 flex-shrink-0">
             <img
@@ -35,8 +34,8 @@ const ProjectCard = ({ project }) => (
             </div>
             <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-30">
                 {project.github && (
-                    <a 
-                        href={project.github} 
+                    <a
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
@@ -46,8 +45,8 @@ const ProjectCard = ({ project }) => (
                     </a>
                 )}
                 {project.link && (
-                    <a 
-                        href={project.link} 
+                    <a
+                        href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
@@ -67,7 +66,7 @@ const ProjectCard = ({ project }) => (
                     <p className="text-slate-400 text-sm mb-2">{project.subtitle}</p>
                 )}
             </div>
-            
+
             {/* Description with more link */}
             <div className="text-slate-400 text-sm mb-4 flex-shrink-0">
                 <p className="line-clamp-2 inline">
@@ -129,7 +128,7 @@ const Projects = () => {
         <section id="projects" className="py-20 bg-slate-950 relative">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Sticky Header and Filters */}
-                <div className="sticky top-[80px] z-40 bg-slate-950/95 backdrop-blur-md pb-6 pt-4 -mt-4 -mx-6 px-6 mb-12 border-b border-slate-800/50">
+                <div className="bg-slate-950/95 backdrop-blur-md pb-6 pt-4 -mt-4 -mx-6 px-6 mb-12 border-b border-slate-800/50">
                     {/* Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -164,12 +163,27 @@ const Projects = () => {
                                 {category} <span className="text-xs opacity-60 ml-1">
                                     {category === "All"
                                         ? projects.length
-                                        : category === "Featured"
-                                        ? projects.filter(p => p.featured === true).length
                                         : projects.filter(p => p.category === category).length}
                                 </span>
                             </button>
                         ))}
+
+                        {/* Divider */}
+                        <div className="w-px h-8 bg-slate-800 mx-2 hidden sm:block"></div>
+
+                        {/* Featured Toggle */}
+                        <button
+                            onClick={() => setActiveCategory("Featured")}
+                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${activeCategory === "Featured"
+                                ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/50'
+                                : 'bg-slate-900 text-slate-400 hover:text-amber-400 border border-slate-800 hover:border-amber-500/30'
+                                }`}
+                        >
+                            <span>⭐ Featured</span>
+                            <span className="text-xs opacity-60">
+                                {projects.filter(p => p.featured === true).length}
+                            </span>
+                        </button>
                     </div>
                 </div>
 
@@ -177,25 +191,33 @@ const Projects = () => {
                 <div className="relative">
                     <div className="flex gap-8">
                         {/* Projects Grid */}
-                        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {paginatedProjects.map((project, index) => (
-                                <ProjectCard key={project.title} project={project} />
-                            ))}
-                        </div>
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeCategory + currentPage}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                                className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                            >
+                                {paginatedProjects.map((project, index) => (
+                                    <ProjectCard key={project.title} project={project} />
+                                ))}
+                            </motion.div>
+                        </AnimatePresence>
 
                         {/* Vertical Pagination - Sticky */}
                         {totalPages > 1 && (
                             <div className="hidden lg:block w-10 flex-shrink-0">
-                                <div className="sticky top-[200px] flex flex-col items-center gap-2 z-30 h-fit">
+                                <div className="sticky top-1/2 -translate-y-1/2 flex flex-col items-center gap-2 z-30 h-fit">
                                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                                         <button
                                             key={page}
                                             onClick={() => setCurrentPage(page)}
-                                            className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
-                                                currentPage === page
-                                                    ? 'bg-cyan-500 text-white scale-110'
-                                                    : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
-                                            }`}
+                                            className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all ${currentPage === page
+                                                ? 'bg-cyan-500 text-white scale-110'
+                                                : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+                                                }`}
                                         >
                                             {page}
                                         </button>

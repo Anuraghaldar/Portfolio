@@ -12,7 +12,8 @@ export const personalInfo = {
     portrait: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80", // Add your portrait image URL here
     heroImage: "", // Add your hero section image URL here
     headline: "YOUR VISION, MY MISSION",
-    mission: "Guiding the Creative Journey Together, Your Aspirations at the Heart of Every Design - Where Your Unique Dreams Meet My Dedication to Craft Exceptional Visual Experiences",
+    // mission: "Guiding the Creative Journey Together, Your Aspirations at the Heart of Every Design - Where Your Unique Dreams Meet My Dedication to Craft Exceptional Visual Experiences",
+    mission: "I design with intention — shaped by your goals, guided by thoughtful decisions at every step, and focused on delivering experiences that resonate, add value, and stand the test of time.",
     ctaPrimary: "Explore My Portfolio",
     ctaSecondary: "Hire Me",
 };
@@ -186,10 +187,10 @@ export const projects = [
         image: "https://media.licdn.com/dms/image/v2/D5622AQFrkAd5H1VEww/feedshare-shrink_1280/B56Zn6w2DFHUAs-/0/1760848733533?e=1766016000&v=beta&t=U5xdjWKgKnsX3qwveWj7KTTD86imoT906v82Nb6ndLw",
         featured: true,
         link: "https://github.com/er-pritamdas/Progress-Pulse",
-        github: "https://github.com/er-pritamdas",
+        github: "https://github.com/er-pritamdas/Progress-Pulse",
     },
     {
-        title: "RAG Chatbot",
+        title: "Chatbot Powered-by Retrieval Augmented Generation",
         subtitle: "Company Document Assistant",
         tech: ["Google Drive", "Gemini AI", "Pinecone", "n8n"],
         description: "Automated chatbot for querying company documents using RAG architecture.",
@@ -197,7 +198,7 @@ export const projects = [
         image: "https://media.licdn.com/dms/image/v2/D5622AQGWaAfOd70iPA/feedshare-shrink_1280/B56Zi4OowKHQAk-/0/1755437502304?e=1766016000&v=beta&t=JO4TtA4QbcD_c6gn0lytT46SvlZ6ZaEMQwSZaJqpHSA",
         featured: false,
         link: "https://github.com/er-pritamdas/AI-Automation/tree/main/02.%20RAG%20Chatbot%20for%20Company%20Documents",
-        github: "https://github.com/er-pritamdas",
+        github: "https://github.com/er-pritamdas/AI-Automation/tree/main/02.%20RAG%20Chatbot%20for%20Company%20Documents",
     },
     {
         title: "MCP Server Integration",
@@ -208,10 +209,10 @@ export const projects = [
         image: "https://media.licdn.com/dms/image/v2/D5622AQEPLOFuTTiHjw/feedshare-shrink_2048_1536/B56Zja5sf2HAAw-/0/1756019216070?e=1766016000&v=beta&t=vfxqyBP9M4mfRmMyHXeTPZB507U133ZeHRkD2LO5jpw",
         featured: false,
         link: "https://github.com/er-pritamdas/AI-Automation/tree/main/03.%20MCP%20Server%20with%20AgentPass%20AI",
-        github: "https://github.com/er-pritamdas",
+        github: "https://github.com/er-pritamdas/AI-Automation/tree/main/03.%20MCP%20Server%20with%20AgentPass%20AI",
     },
     {
-        title: "AI Agent for ATS",
+        title: "ATS Optimization Powered-by AI",
         subtitle: "Resume Optimization",
         tech: ["AI Agents", "LaTeX", "Python"],
         description: "Agent that analyzes resumes against job descriptions and rewrites them in LaTeX.",
@@ -219,7 +220,7 @@ export const projects = [
         image: "https://media.licdn.com/dms/image/v2/D5622AQHDP79OncMBxA/feedshare-shrink_2048_1536/B56ZiUD3HQHkAw-/0/1754830697716?e=1766016000&v=beta&t=gMqamR6yxOVH3ba9ikiLrL69CwgBK7EtraTtd5Akp0k",
         featured: false,
         link: "https://github.com/er-pritamdas/AI-Automation/tree/main/01.%20AI%20Agent%20for%20ATS%20Optimization",
-        github: "https://github.com/er-pritamdas",
+        github: "https://github.com/er-pritamdas/AI-Automation/tree/main/01.%20AI%20Agent%20for%20ATS%20Optimization",
     },
     // {
     //     title: "Network Configuration Automation Tool",

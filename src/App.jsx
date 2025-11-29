@@ -13,7 +13,7 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-hidden">
+    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-200 relative">
       <Toaster position="bottom-right" toastOptions={{ duration: 4000 }} />
       <Navbar />
       <main className="relative z-10">
