@@ -33,7 +33,6 @@ const Footer = () => {
         { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#projects' },
         { name: 'Skills', href: '#skills' },
-        { name: 'Blogs', href: '#blogs' },
         { name: 'Contact', href: '#contact' },
     ];
 
@@ -67,7 +66,7 @@ const Footer = () => {
                         transition={{ duration: 0.5 }}
                     >
                         <h3 className="text-2xl font-bold text-white mb-4">
-                            PritamDas<span className="text-cyan-400">._</span>
+                            Anurag Haldar<span className="text-cyan-400">._</span>
                         </h3>
                         <p className="text-slate-400 text-sm leading-relaxed mb-6">
                             Full Stack Developer crafting digital experiences with code, creativity, and cutting-edge technology.
@@ -150,7 +149,7 @@ const Footer = () => {
                             viewport={{ once: true }}
                             className="text-slate-500 text-sm flex items-center gap-2"
                         >
-                            © {currentYear} Pritam Das. All rights reserved.
+                            © {currentYear} Anurag Haldar. All rights reserved.
                             <span className="hidden md:inline">Made with</span>
                             <Heart size={14} className="text-red-500 animate-pulse hidden md:inline" />
                             <span className="hidden md:inline">and</span>

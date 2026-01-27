@@ -8,8 +8,70 @@
   }
 
   body {
-    @apply bg-slate-950 text-slate-200 antialiased overflow-x-hidden;
+    @apply text-slate-200 antialiased overflow-x-hidden;
+    background-color: #020617;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(14, 165, 233, 0.18) 0%, transparent 45%),
+      radial-gradient(circle at 85% 10%, rgba(168, 85, 247, 0.18) 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.2) 0%, transparent 45%),
+      linear-gradient(135deg, #01030b 0%, #020617 45%, #050315 100%);
   }
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(120deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(300deg, rgba(147, 51, 234, 0.04) 1px, transparent 1px);
+  background-size: 260px 260px, 320px 320px;
+  opacity: 0.12;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 0;
+}
+
+.cosmic-shell {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.1), transparent 50%),
+    radial-gradient(circle at 80% 0%, rgba(168, 85, 247, 0.08), transparent 40%),
+    rgba(1, 3, 10, 0.9);
+}
+
+.cosmic-shell::before,
+.cosmic-shell::after {
+  content: '';
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 65%);
+  filter: blur(40px);
+  opacity: 0.7;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cosmic-shell::before {
+  top: -160px;
+  right: -100px;
+}
+
+.cosmic-shell::after {
+  bottom: -120px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 65%);
 }
 
 /* Custom Scrollbar */

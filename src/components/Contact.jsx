@@ -4,6 +4,16 @@ import { Mail, Phone, MapPin, Send, Loader2, Linkedin, Github } from 'lucide-rea
 import toast from 'react-hot-toast';
 import { personalInfo } from '../data';
 
+const getHandle = (url, fallback = "") => {
+    if (fallback) return fallback;
+    if (!url) return "";
+    const sanitized = url.split("?")[0];
+    const segments = sanitized.split("/").filter(Boolean);
+    const handle = segments[segments.length - 1] || "";
+    if (!handle) return "";
+    return handle.startsWith("@") ? handle : `@${handle}`;
+};
+
 const Contact = () => {
     const [formState, setFormState] = useState({
         name: '',
@@ -66,6 +76,9 @@ const Contact = () => {
         }
     };
 
+    const linkedinHandle = getHandle(personalInfo.linkedin, personalInfo.linkedinHandle);
+    const githubHandle = getHandle(personalInfo.github, personalInfo.githubHandle);
+
     return (
         <section id="contact" className="py-20 bg-slate-950 relative overflow-hidden">
             {/* Background Glow */}
@@ -126,7 +139,7 @@ const Contact = () => {
                                 <div>
                                     <p className="text-sm text-slate-400 mb-1">Connect on LinkedIn</p>
                                     <p className="text-white font-medium group-hover:text-blue-400 transition-colors">
-                                        @er-pritamdas
+                                        {linkedinHandle}
                                     </p>
                                 </div>
                             </div>
@@ -150,7 +163,7 @@ const Contact = () => {
                                 <div>
                                     <p className="text-sm text-slate-400 mb-1">View My Code</p>
                                     <p className="text-white font-medium group-hover:text-purple-400 transition-colors">
-                                        @er-pritamdas
+                                        {githubHandle}
                                     </p>
                                 </div>
                             </div>

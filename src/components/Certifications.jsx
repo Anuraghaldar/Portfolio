@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Award, CheckCircle } from 'lucide-react';
+import { Award, CheckCircle } from 'lucide-react';
 import { certifications } from '../data';
 
 const Certifications = () => {
@@ -136,12 +136,6 @@ const Certifications = () => {
                                                                 </span>
                                                             ))}
                                                         </div>
-                                                        <a
-                                                            href={cert.link}
-                                                            className="text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1 mt-1 font-medium"
-                                                        >
-                                                            Verify Credential <ExternalLink size={10} />
-                                                        </a>
                                                     </div>
 
                                                     {/* Seal */}

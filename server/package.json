@@ -1,7 +1,7 @@
 {
     "name": "portfolio-backend",
     "version": "1.0.0",
-    "description": "Backend for Pritam Das Portfolio",
+    "description": "Backend for Anurag Haldar Portfolio",
     "main": "server.js",
     "type": "module",
     "scripts": {
@@ -9,7 +9,7 @@
         "dev": "nodemon server.js"
     },
     "keywords": [],
-    "author": "Pritam Das",
+    "author": "Anurag Haldar",
     "license": "ISC",
     "dependencies": {
         "cors": "^2.8.5",

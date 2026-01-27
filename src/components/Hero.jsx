@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { personalInfo, heroMetrics } from '../data';
 
@@ -54,14 +54,80 @@ const AnimatedCounter = ({ value, suffix = "", highlight = false, duration = 2, 
     );
 };
 
+const techIcons = [
+    { src: 'https://skillicons.dev/icons?i=react', alt: 'React' },
+    { src: 'https://skillicons.dev/icons?i=ts', alt: 'TypeScript' },
+    { src: 'https://skillicons.dev/icons?i=css', alt: 'CSS' },
+    { src: 'https://skillicons.dev/icons?i=nestjs', alt: 'NestJS' },
+    { src: 'https://skillicons.dev/icons?i=nodejs', alt: 'Node.js' },
+    { src: 'https://skillicons.dev/icons?i=sqlite', alt: 'SQL' }
+];
+
+const TechOrbit = () => {
+    const radius = 75;
+
+    return (
+        <div className="relative w-48 h-48">
+            <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-400/20 to-purple-500/20 blur-sm" />
+            </div>
+            <motion.div
+                className="absolute inset-0"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+            >
+                {techIcons.map((icon, index) => {
+                    const angle = (index / techIcons.length) * Math.PI * 2;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    return (
+                        <motion.div
+                            key={icon.alt}
+                            className="absolute w-12 h-12 bg-white/5 border border-white/10 rounded-2xl backdrop-blur flex items-center justify-center"
+                            style={{
+                                left: `calc(50% + ${x}px)`,
+                                top: `calc(50% + ${y}px)`,
+                                transform: 'translate(-50%, -50%)'
+                            }}
+                            animate={{ rotate: [0, 360] }}
+                            transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
+                        >
+                            <img src={icon.src} alt={icon.alt} className="w-7 h-7 object-contain" />
+                        </motion.div>
+                    );
+                })}
+            </motion.div>
+        </div>
+    );
+};
+
 const Hero = () => {
     return (
-        <section id="hero" className="relative w-full h-screen bg-slate-950 overflow-hidden">
+        <section id="hero" className="relative w-full h-screen overflow-hidden bg-[#040715]">
             {/* Gradient Background */}
             <div className="absolute inset-0 z-0">
-                <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-950/98 to-slate-950" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#020510] via-[#050b1c] to-[#0b1229]" />
+                <div
+                    className="absolute inset-0 opacity-25"
+                    style={{
+                        backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(56,189,248,0.2), transparent 50%), radial-gradient(circle at 80% 0%, rgba(147,51,234,0.18), transparent 45%)'
+                    }}
+                />
+                <div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                        backgroundImage: 'linear-gradient(120deg, rgba(59,130,246,0.08) 1px, transparent 1px), linear-gradient(300deg, rgba(14,165,233,0.05) 1px, transparent 1px)',
+                        backgroundSize: '320px 320px, 280px 280px'
+                    }}
+                />
+                <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[70%] h-[60%] bg-cyan-500/20 blur-[140px]" />
+                <div className="absolute bottom-[-30%] right-[-10%] w-[50%] h-[50%] bg-purple-600/20 blur-[160px]" />
+                <motion.div
+                    className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                />
             </div>
 
             {/* Main Content */}
@@ -84,12 +150,12 @@ const Hero = () => {
                             </p>
 
                             {/* CTA Buttons */}
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-3">
                                 <motion.a
                                     href="#projects"
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="flex items-center gap-2 bg-white text-slate-950 px-6 py-3 rounded-lg font-semibold hover:bg-cyan-400 transition-colors"
+                                    className="flex items-center gap-2 bg-gradient-to-r from-cyan-300 via-sky-400 to-emerald-400 text-slate-950 px-6 py-3 rounded-xl font-semibold shadow-[0_12px_30px_rgba(14,165,233,0.35)] hover:brightness-110 transition-all"
                                 >
                                     {personalInfo.ctaPrimary || "Explore My Portfolio"}
                                     <ArrowRight size={20} />
@@ -98,7 +164,7 @@ const Hero = () => {
                                     href="#contact"
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="flex items-center gap-2 bg-slate-900/50 border border-slate-800 text-white px-6 py-3 rounded-lg font-semibold hover:border-cyan-500/50 hover:text-cyan-400 transition-colors"
+                                    className="flex items-center gap-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-xl font-semibold hover:border-cyan-400/60 hover:text-cyan-200 transition-all"
                                 >
                                     {personalInfo.ctaSecondary || "Hire Me"}
                                     <ArrowRight size={20} />
@@ -109,6 +175,26 @@ const Hero = () => {
 
                     {/* Right Side - 50% */}
                     <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-end relative">
+                        <div className="hidden lg:flex flex-col items-center gap-8 absolute inset-x-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/25 via-transparent to-purple-500/25 blur-2xl" />
+                                <TechOrbit />
+                            </div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.3 }}
+                                className="pointer-events-none"
+                            >
+                                <pre className="px-6 py-4 text-xs font-mono text-slate-200 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md" style={{ boxShadow: '0 20px 45px rgba(8,11,19,0.55)' }}>
+{`const stack = ['React', 'TypeScript', 'NestJS'];
+function shipRelease(team) {
+  return team.trust + delivery.speed;
+}
+export default shipRelease;`}
+                                </pre>
+                            </motion.div>
+                        </div>
                         {personalInfo.heroImage ? (
                             <motion.div
                                 initial={{ opacity: 0, x: 50 }}
@@ -128,9 +214,7 @@ const Hero = () => {
                                     <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent rounded-b-2xl" />
                                 </div>
                             </motion.div>
-                        ) : (
-                            <div className="relative w-full h-full min-h-[400px] lg:min-h-[600px]" />
-                        )}
+                        ) : null}
                         
                         {/* Northern Lights Gradient Animation */}
                         <div className="absolute inset-0 right-0 top-0 bottom-0 overflow-hidden pointer-events-none z-0">
@@ -234,7 +318,7 @@ const Hero = () => {
                 </div>
 
                 {/* Bottom Metrics Section - Visible on page load */}
-                <div className="border-t border-slate-800/50 pt-3 pb-4">
+                <div className="border-t border-white/10 pt-3 pb-4">
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
                             {heroMetrics.map((metric, index) => (

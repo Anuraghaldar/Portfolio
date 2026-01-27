@@ -1,233 +1,143 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { projects } from '../data';
 
-const categories = ["All", "Web Development", "AI Automation", "DevOps"];
-
-const ProjectCard = ({ project }) => (
-    <a
-        href={project.link || "#"}
-        target={project.link ? "_blank" : undefined}
-        rel={project.link ? "noopener noreferrer" : undefined}
-        className={`group relative rounded-2xl overflow-hidden transition-all h-full flex flex-col cursor-pointer ${project.featured
-            ? 'bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20'
-            : 'bg-slate-900/50 border border-slate-800 hover:border-cyan-500/50'
-            }`}
-    >
-        <div className="relative w-full h-48 overflow-hidden bg-slate-800 flex-shrink-0">
-            <img
-                src={project.image}
-                alt={project.title}
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-10" />
-            <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-                {project.featured && (
-                    <span className="px-3 py-1 bg-slate-950/90 text-cyan-400 text-xs font-bold rounded-full border border-cyan-500/30 backdrop-blur-sm shadow-xl">
-                        ⭐ Featured
-                    </span>
-                )}
-                <span className="px-3 py-1 bg-black/50 text-white text-xs font-semibold rounded-full border border-white/20 backdrop-blur-md shadow-lg">
-                    {project.category}
-                </span>
-            </div>
-            <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-30">
-                {project.github && (
-                    <div
-                        onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            window.open(project.github, '_blank', 'noopener,noreferrer');
-                        }}
-                        className="p-3 bg-white/10 rounded-full hover:bg-white/20 text-white backdrop-blur-sm transition-colors cursor-pointer"
-                    >
-                        <Github size={20} />
-                    </div>
-                )}
-                {project.link && (
-                    <div
-                        onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            window.open(project.link, '_blank', 'noopener,noreferrer');
-                        }}
-                        className="p-3 bg-cyan-500/80 rounded-full hover:bg-cyan-500 text-white backdrop-blur-sm transition-colors cursor-pointer"
-                    >
-                        <ExternalLink size={20} />
-                    </div>
-                )}
-            </div>
-        </div>
-        <div className="p-6 flex-1 flex flex-col">
-            <div className="mb-3">
-                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors line-clamp-2">
-                    {project.title}
-                </h3>
-                {project.subtitle && (
-                    <p className="text-slate-400 text-sm mb-2">{project.subtitle}</p>
-                )}
-            </div>
-
-            {/* Description with more link */}
-            <div className="text-slate-400 text-sm mb-4 flex-shrink-0">
-                <p className="line-clamp-2 inline">
-                    {project.description}
-                </p>
-                {project.link && (
-                    <span className="text-cyan-400 font-medium ml-1">
-                        more
-                    </span>
-                )}
-            </div>
-
-            {/* Tech Tags */}
-            <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
-                {project.tech && project.tech.slice(0, 4).map((t, i) => (
-                    <span key={i} className="text-xs px-2 py-1 bg-slate-800/50 text-slate-300 rounded border border-slate-700 whitespace-nowrap">
-                        {t}
-                    </span>
-                ))}
-                {project.tech && project.tech.length > 4 && (
-                    <span className="text-xs px-2 py-1 bg-slate-800/50 text-slate-300 rounded border border-slate-700 whitespace-nowrap">
-                        +{project.tech.length - 4}
-                    </span>
-                )}
-            </div>
-
-            {/* View Project Link */}
-            {project.link && (
-                <div className="flex items-center gap-2 text-cyan-400 text-sm font-medium mt-auto flex-shrink-0 pt-2 group-hover:gap-3 transition-all">
-                    <span>View Project</span>
-                    <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform flex-shrink-0" />
-                </div>
-            )}
-        </div>
-    </a>
-);
-
 const Projects = () => {
-    const [activeCategory, setActiveCategory] = useState("All");
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 3;
-
-    const filteredProjects = projects.filter(p => {
-        if (activeCategory === "All") return true;
-        if (activeCategory === "Featured") return p.featured === true;
-        return p.category === activeCategory;
-    });
-
-    // Reset to page 1 when filter changes
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [activeCategory]);
-
-    const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const paginatedProjects = filteredProjects.slice(startIndex, startIndex + itemsPerPage);
+    const [openIndex, setOpenIndex] = useState(0);
 
     return (
         <section id="projects" className="py-20 bg-slate-950 relative">
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Sticky Header and Filters */}
-                <div className="bg-slate-950/95 backdrop-blur-md pb-6 pt-4 -mt-4 -mx-6 px-6 mb-12 border-b border-slate-800/50">
-                    {/* Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="mb-8"
-                    >
-                        <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-                            My <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                                Work
-                            </span>
-                        </h2>
-                        <p className="text-slate-400 text-lg leading-relaxed max-w-3xl">
-                            Deployed scalable travel, event and telemedicine web and hybrid mobile apps using React SPA and PWA.
-                            Collaborated in 140+ projects with 50+ clients all around the world.
-                        </p>
-                    </motion.div>
+            <div className="max-w-6xl mx-auto px-6">
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center max-w-3xl mx-auto mb-16"
+                >
+                    <p className="text-cyan-400 text-sm uppercase tracking-[0.3em] mb-3">My Work</p>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Production systems built with intent.
+                    </h2>
+                    <p className="text-slate-400 text-base md:text-lg">
+                        B2B SaaS Platform and IBEX were engineered, shipped, and maintained—not mocked up. Every project demonstrates clean architecture, measurable performance, and UI decisions backed by real usage data.
+                    </p>
+                </motion.div>
 
-                    {/* Filter Tabs */}
-                    <div className="flex flex-wrap gap-4">
-                        {categories.map((category) => (
-                            <button
-                                key={category}
-                                onClick={() => setActiveCategory(category)}
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category
-                                    ? 'bg-white text-slate-950'
-                                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-                                    }`}
-                            >
-                                {category} <span className="text-xs opacity-60 ml-1">
-                                    {category === "All"
-                                        ? projects.length
-                                        : projects.filter(p => p.category === category).length}
-                                </span>
-                            </button>
-                        ))}
-
-                        {/* Divider */}
-                        <div className="w-px h-8 bg-slate-800 mx-2 hidden sm:block"></div>
-
-                        {/* Featured Toggle */}
-                        <button
-                            onClick={() => setActiveCategory("Featured")}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${activeCategory === "Featured"
-                                ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/50'
-                                : 'bg-slate-900 text-slate-400 hover:text-amber-400 border border-slate-800 hover:border-amber-500/30'
-                                }`}
-                        >
-                            <span>⭐ Featured</span>
-                            <span className="text-xs opacity-60">
-                                {projects.filter(p => p.featured === true).length}
-                            </span>
-                        </button>
-                    </div>
-                </div>
-
-                {/* Projects Grid with Pagination */}
-                <div className="relative">
-                    <div className="flex gap-8">
-                        {/* Projects Grid */}
-                        <AnimatePresence mode="wait">
+                <div className="space-y-12">
+                    {projects.map((project, index) => {
+                        const isOpen = openIndex === index;
+                        return (
                             <motion.div
-                                key={activeCategory + currentPage}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.3 }}
-                                className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                                key={project.title}
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="rounded-3xl border border-slate-900/70 bg-slate-900/40 backdrop-blur-xl p-4 md:p-6 lg:p-8"
                             >
-                                {paginatedProjects.map((project, index) => (
-                                    <ProjectCard key={project.title} project={project} />
-                                ))}
-                            </motion.div>
-                        </AnimatePresence>
+                                <div className="grid gap-6 lg:gap-10 lg:grid-cols-[minmax(260px,360px)_1fr] items-stretch">
+                                    <button
+                                        onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                                        className={`relative overflow-hidden rounded-2xl text-left transition-all duration-300 border ${isOpen ? 'border-cyan-500/60 bg-slate-900/80 shadow-[0_20px_60px_rgba(8,145,178,0.25)]' : 'border-slate-800/80 bg-slate-900/60 hover:border-cyan-500/40'}`}
+                                    >
+                                        <div className="absolute inset-0 opacity-40">
+                                            <img
+                                                src={project.image}
+                                                alt={project.title}
+                                                className="w-full h-full object-cover"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900/90 to-slate-900/30" />
+                                        </div>
+                                        <div className="relative z-10 p-6 flex flex-col gap-4 min-h-[280px]">
+                                            <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-slate-400">
+                                                <span>Project 0{index + 1}</span>
+                                                <span className="flex items-center gap-2 text-cyan-300">
+                                                    {project.category}
+                                                    <span className="p-1 rounded-full border border-slate-700">
+                                                        {isOpen ? <Minus size={12} /> : <Plus size={12} />}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-2xl font-semibold text-white mb-2 leading-snug">
+                                                    {project.title}
+                                                </h3>
+                                                <p className="text-slate-400 text-sm">{project.subtitle}</p>
+                                            </div>
+                                            <p className="text-slate-400 text-sm leading-relaxed line-clamp-4">
+                                                {project.description}
+                                            </p>
+                                            <div className="flex flex-wrap gap-2 mt-auto">
+                                                {project.tech.slice(0, 4).map((tech) => (
+                                                    <span
+                                                        key={tech}
+                                                        className="px-3 py-1 text-xs uppercase tracking-wide rounded-full bg-slate-950/60 border border-slate-800 text-slate-300"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </button>
 
-                        {/* Vertical Pagination - Sticky */}
-                        {totalPages > 1 && (
-                            <div className="hidden lg:block w-10 flex-shrink-0">
-                                <div className="sticky top-1/2 -translate-y-1/2 flex flex-col items-center gap-2 z-30 h-fit">
-                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                                        <button
-                                            key={page}
-                                            onClick={() => setCurrentPage(page)}
-                                            className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all ${currentPage === page
-                                                ? 'bg-cyan-500 text-white scale-110'
-                                                : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
-                                                }`}
-                                        >
-                                            {page}
-                                        </button>
-                                    ))}
+                                    <AnimatePresence mode="wait">
+                                        {isOpen && (
+                                            <motion.div
+                                                key={`${project.title}-detail`}
+                                                initial={{ opacity: 0, x: 40 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                exit={{ opacity: 0, x: 40 }}
+                                                transition={{ duration: 0.4 }}
+                                                className="relative rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-950 to-slate-900 p-6 md:p-8 overflow-hidden"
+                                            >
+                                                <div className="absolute inset-0 pointer-events-none">
+                                                    <div className="absolute -top-24 right-[-10%] w-72 h-72 bg-cyan-500/10 blur-[120px]" />
+                                                    <div className="absolute -bottom-20 left-[-5%] w-64 h-64 bg-purple-500/10 blur-[110px]" />
+                                                    <div className="absolute inset-0 border border-white/5 rounded-2xl opacity-10" />
+                                                </div>
+
+                                                <div className="relative z-10 space-y-6">
+                                                    <div>
+                                                        <p className="text-xs uppercase tracking-[0.4em] text-slate-500 mb-3">Impact</p>
+                                                        <p className="text-slate-200 text-base leading-relaxed">
+                                                            {project.description}
+                                                        </p>
+                                                    </div>
+
+                                                    {project.metrics && project.metrics.length > 0 && (
+                                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                                            {project.metrics.map((metric) => (
+                                                                <div key={metric.label} className="rounded-xl bg-slate-900/70 border border-slate-800 px-4 py-3">
+                                                                    <p className="text-2xl font-semibold text-white">{metric.value}</p>
+                                                                    <p className="text-xs uppercase tracking-wide text-slate-500">{metric.label}</p>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    )}
+
+                                                    {project.highlights && (
+                                                        <div>
+                                                            <p className="text-xs uppercase tracking-[0.4em] text-slate-500 mb-3">Key Contributions</p>
+                                                            <ul className="space-y-3">
+                                                                {project.highlights.map((highlight, i) => (
+                                                                    <li key={i} className="flex gap-3 text-sm text-slate-300">
+                                                                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
+                                                                        <span>{highlight}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
-                            </div>
-                        )}
-                    </div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

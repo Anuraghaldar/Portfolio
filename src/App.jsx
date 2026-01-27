@@ -5,7 +5,6 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
-import Blogs from './components/Blogs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -13,7 +12,7 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-200 relative">
+    <div className="cosmic-shell text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-hidden">
       <Toaster position="bottom-right" toastOptions={{ duration: 4000 }} />
       <Navbar />
       <main className="relative z-10">
@@ -22,7 +21,6 @@ function App() {
         <Experience />
         <Projects />
         <Certifications />
-        <Blogs />
         <Contact />
       </main>
 
