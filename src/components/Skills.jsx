@@ -88,10 +88,11 @@ const Skills = () => {
                     <div className="flex flex-wrap md:flex-col gap-3">
                         <button
                             onClick={() => setActiveCategory(null)}
-                            className={`px-4 py-4 rounded-2xl text-sm font-semibold uppercase tracking-wider transition-all border text-left flex items-center justify-between gap-3 ${activeCategory === null
+                            className={`px-4 py-4 rounded-2xl text-sm font-semibold uppercase tracking-wider transition-all duration-200 border text-left flex items-center justify-between gap-3 ${activeCategory === null
                                 ? 'border-cyan-400/60 bg-cyan-400/10 text-white shadow-[0_0_25px_rgba(34,211,238,0.25)]'
                                 : 'border-white/10 bg-white/5 text-slate-400 hover:border-cyan-400/30 hover:text-white'
                                 }`}
+                            style={{ willChange: 'background-color, border-color' }}
                         >
                             <span>All Systems</span>
                             {activeCategory === null && <motion.div layoutId="activeDot" className="w-2.5 h-2.5 rounded-full bg-cyan-300" />}
@@ -100,10 +101,11 @@ const Skills = () => {
                             <button
                                 key={category}
                                 onClick={() => setActiveCategory(category === activeCategory ? null : category)}
-                                className={`px-4 py-4 rounded-2xl text-sm font-semibold uppercase tracking-wider transition-all border text-left flex items-center justify-between gap-3 ${activeCategory === category
+                                className={`px-4 py-4 rounded-2xl text-sm font-semibold uppercase tracking-wider transition-all duration-200 border text-left flex items-center justify-between gap-3 ${activeCategory === category
                                     ? 'border-cyan-400/60 bg-cyan-400/10 text-white shadow-[0_0_25px_rgba(34,211,238,0.25)]'
                                     : 'border-white/10 bg-white/5 text-slate-400 hover:border-cyan-400/30 hover:text-white'
                                     }`}
+                                style={{ willChange: 'background-color, border-color' }}
                             >
                                 <span>{category}</span>
                                 {activeCategory === category && <motion.div layoutId="activeDot" className="w-2.5 h-2.5 rounded-full bg-cyan-300" />}
@@ -155,11 +157,12 @@ const Skills = () => {
                                             whileInView={{ opacity: 1, scale: 1 }}
                                             viewport={{ once: true }}
                                             transition={{ duration: 0.45, delay: (orbitIndex * 0.15) + (index * 0.04) }}
-                                            className={`absolute group flex flex-col items-center transition-all duration-500 ${isSkillActive ? 'opacity-100 z-40 scale-100' : 'opacity-20 z-10 grayscale scale-90'}`}
+                                            className={`absolute group flex flex-col items-center transition-all duration-300 ${isSkillActive ? 'opacity-100 z-40 scale-100' : 'opacity-20 z-10 grayscale scale-90'}`}
                                             style={{
                                                 left: `calc(50% + ${x}px)`,
                                                 bottom: `calc(50% + ${y}px)`,
-                                                transform: 'translate(-50%, 50%)'
+                                                transform: 'translate(-50%, 50%)',
+                                                willChange: 'transform, opacity'
                                             }}
                                         >
                                             <div

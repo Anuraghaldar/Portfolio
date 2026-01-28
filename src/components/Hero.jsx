@@ -58,6 +58,7 @@ const techIcons = [
     { src: 'https://skillicons.dev/icons?i=react', alt: 'React' },
     { src: 'https://skillicons.dev/icons?i=ts', alt: 'TypeScript' },
     { src: 'https://skillicons.dev/icons?i=css', alt: 'CSS' },
+    { src: '/Portfolio/icons/react-query.svg', alt: 'React Query' },
     { src: 'https://skillicons.dev/icons?i=nestjs', alt: 'NestJS' },
     { src: 'https://skillicons.dev/icons?i=nodejs', alt: 'Node.js' },
     { src: 'https://skillicons.dev/icons?i=sqlite', alt: 'SQL' }
@@ -67,7 +68,7 @@ const TechOrbit = () => {
     const radius = 75;
 
     return (
-        <div className="relative w-48 h-48">
+        <div className="relative w-48 h-48" style={{ willChange: 'transform' }}>
             <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-400/20 to-purple-500/20 blur-sm" />
             </div>
@@ -75,6 +76,7 @@ const TechOrbit = () => {
                 className="absolute inset-0"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+                style={{ willChange: 'transform' }}
             >
                 {techIcons.map((icon, index) => {
                     const angle = (index / techIcons.length) * Math.PI * 2;
@@ -87,7 +89,8 @@ const TechOrbit = () => {
                             style={{
                                 left: `calc(50% + ${x}px)`,
                                 top: `calc(50% + ${y}px)`,
-                                transform: 'translate(-50%, -50%)'
+                                transform: 'translate(-50%, -50%)',
+                                willChange: 'transform'
                             }}
                             animate={{ rotate: [0, 360] }}
                             transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
@@ -131,7 +134,7 @@ const Hero = () => {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 h-full flex flex-col justify-between py-20">
+            <div className="relative z-10 h-full flex flex-col justify-between pt-36 pb-20">
                 {/* Top Section - 50/50 Split Layout */}
                 <div className="flex flex-col lg:flex-row items-center max-w-7xl mx-auto px-6 w-full flex-1 min-h-0">
                     {/* Left Content - 50% */}
@@ -141,7 +144,7 @@ const Hero = () => {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight mt-6">
                                 {personalInfo.headline || "YOUR VISION, MY MISSION"}
                             </h1>
                             
@@ -245,6 +248,8 @@ export default shipRelease;`}
                                     }}
                                     style={{
                                         filter: 'blur(40px)',
+                                        willChange: 'transform',
+                                        transform: 'translateZ(0)'
                                     }}
                                 />
                                 
@@ -267,6 +272,8 @@ export default shipRelease;`}
                                     }}
                                     style={{
                                         filter: 'blur(50px)',
+                                        willChange: 'transform',
+                                        transform: 'translateZ(0)'
                                     }}
                                 />
                                 
@@ -289,6 +296,8 @@ export default shipRelease;`}
                                     }}
                                     style={{
                                         filter: 'blur(45px)',
+                                        willChange: 'transform',
+                                        transform: 'translateZ(0)'
                                     }}
                                 />
                                 

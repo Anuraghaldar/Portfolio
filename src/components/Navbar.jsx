@@ -144,7 +144,7 @@ const Navbar = () => {
                                 <a href="https://github.com/Anuraghaldar" className="text-slate-400 hover:text-white">
                                     <Github size={24} />
                                 </a>
-                                <a href="https://linkedin.com/in/anuraghaldar-541536273" className="text-slate-400 hover:text-white">
+                                <a href="https://www.linkedin.com/in/anurag-haldar-541536273/" className="text-slate-400 hover:text-white">
                                     <Linkedin size={24} />
                                 </a>
                             </div>

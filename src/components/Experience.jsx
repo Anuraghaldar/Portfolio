@@ -14,10 +14,11 @@ const ExperienceCard = ({ exp, index, isOpen, toggleOpen }) => {
         >
             <button
                 onClick={toggleOpen}
-                className={`w-full flex items-center justify-between p-6 rounded-t-2xl transition-all duration-300 ${isOpen
+                className={`w-full flex items-center justify-between p-6 rounded-t-2xl transition-all duration-200 ${isOpen
                         ? 'bg-cyan-500/20 text-white rounded-b-none border border-cyan-500/30'
                         : 'bg-slate-900/50 text-white hover:bg-slate-800/50 rounded-2xl border border-slate-800 hover:border-cyan-500/30'
                     }`}
+                style={{ willChange: 'background-color, border-color' }}
             >
                 <div className="flex items-center gap-4 text-left">
                     <h3 className="text-lg md:text-xl font-bold">
@@ -32,13 +33,14 @@ const ExperienceCard = ({ exp, index, isOpen, toggleOpen }) => {
                 </div>
             </button>
 
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
                 {isOpen && (
                     <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        style={{ willChange: 'height, opacity' }}
                         className="overflow-hidden bg-slate-900/50 border-x border-b border-slate-800 rounded-b-2xl"
                     >
                         <div className="p-6 md:p-8">
