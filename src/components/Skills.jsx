@@ -8,9 +8,9 @@ const Skills = () => {
     // Mapping categories to orbits (Outer to Inner)
     const orbits = [
         { name: "Surface Orbit", categories: ["Frontend Systems"], radius: 620, border: "rgba(14,165,233,0.35)", glow: "rgba(14,165,233,0.25)" },
-        { name: "Logic Plane", categories: ["Backend Services"], radius: 500, border: "rgba(168,85,247,0.35)", glow: "rgba(168,85,247,0.22)" },
-        { name: "Data Belt", categories: ["Database"], radius: 380, border: "rgba(248,113,113,0.35)", glow: "rgba(248,113,113,0.18)" },
-        { name: "Collab Core", categories: ["Tooling & Collaboration"], radius: 260, border: "rgba(251,191,36,0.35)", glow: "rgba(251,191,36,0.15)" },
+        { name: "Logic Plane", categories: ["Backend Services", "Programming Languages"], radius: 500, border: "rgba(168,85,247,0.35)", glow: "rgba(168,85,247,0.22)" },
+        { name: "Collab Belt", categories: ["Tooling & Collaboration"], radius: 380, border: "rgba(251,191,36,0.32)", glow: "rgba(251,191,36,0.18)" },
+        { name: "Data Core", categories: ["Database"], radius: 200, border: "rgba(248,113,113,0.4)", glow: "rgba(248,113,113,0.22)" },
     ];
 
     const totalSkills = Object.values(skills).reduce((sum, group) => sum + group.length, 0);
@@ -63,7 +63,7 @@ const Skills = () => {
                             Orbiting systems that keep releases calm and production-ready.
                         </h2>
                         <p className="text-slate-300 text-base md:text-lg max-w-2xl">
-                            Every orbit is a cluster of tools I reach for when architecting SaaS interfaces, scaling APIs, and stabilizing delivery. Filter a layer to watch the constellations respond.
+                            Every orbit is a cluster of tools I reach for when architecting interfaces, scaling APIs, and stabilizing delivery. Filter a layer to watch the constellations respond.
                         </p>
                     </div>
 
@@ -115,7 +115,7 @@ const Skills = () => {
                 </div>
 
                 {/* Right Content - Orbital System */}
-                <div className="w-full md:w-3/4 relative h-[620px] md:h-[820px] flex justify-center items-end overflow-hidden">
+                <div className="w-full md:w-3/4 relative h-[620px] md:h-[720px] flex justify-center items-end overflow-hidden">
                     <div className="absolute bottom-6 w-2/3 h-40 bg-gradient-to-t from-cyan-500/30 to-transparent blur-3xl" />
                     <div className="absolute bottom-0 w-64 h-24 bg-slate-900/70 rounded-[50%] border border-white/5 flex items-center justify-center">
                         <span className="text-xs tracking-[0.4em] uppercase text-slate-500">Core</span>
@@ -169,7 +169,11 @@ const Skills = () => {
                                                 className={`w-11 h-11 md:w-14 md:h-14 p-1.5 rounded-2xl border border-white/10 bg-slate-950/80 backdrop-blur transition-all duration-300 cursor-pointer ${isSkillActive && activeCategory ? 'scale-110 shadow-[0_0_15px_rgba(34,211,238,0.35)]' : 'hover:scale-110'
                                                     }`}
                                             >
-                                                <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain drop-shadow-lg" />
+                                                <img
+                                                    src={skill.icon}
+                                                    alt={skill.name}
+                                                    className={`w-full h-full object-contain drop-shadow-lg ${skill.imgClass || ''}`}
+                                                />
                                             </div>
                                             <span className={`text-slate-300 text-[10px] font-semibold uppercase tracking-widest mt-2 text-center whitespace-nowrap transition-all duration-300 ${isSkillActive && activeCategory ? 'opacity-100 text-cyan-300' : 'opacity-70 group-hover:opacity-100 group-hover:text-cyan-300'
                                                 }`}>

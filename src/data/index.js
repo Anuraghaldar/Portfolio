@@ -1,7 +1,7 @@
 export const personalInfo = {
     name: "Anurag Haldar",
     role: "Full Stack Developer",
-    summary: "I'm a Full Stack Developer specializing in React, TypeScript, and NestJS, building scalable, high-performance SaaS products with clean architecture, measurable impact, and production reliability.",
+    summary: "I'm a Full Stack Developer specializing in React, TypeScript, and NestJS, building scalable, high-performance products with clean architecture, measurable impact, and production reliability.",
     location: "Chennai, India",
     phone: "+91 8778315014",
     email: "anuraghaldar1403@gmail.com",
@@ -12,7 +12,7 @@ export const personalInfo = {
     portrait: "",
     heroImage: "",
     headline: "Building Scalable Web Apps · Full Stack Developer · AI Enthusiast",
-    mission: "I'm a Full Stack Developer specializing in React, TypeScript, and NestJS, building scalable, high-performance SaaS products with clean architecture, measurable impact, and production reliability.",
+    mission: "I'm a Full Stack Developer specializing in React, TypeScript, and NestJS, building scalable, high-performance products with clean architecture, measurable impact, and production reliability.",
     ctaPrimary: "See My Work",
     ctaSecondary: "Let's Collaborate",
 };
@@ -53,23 +53,31 @@ export const skills = {
         { name: "HTML5", icon: "https://skillicons.dev/icons?i=html" },
         { name: "CSS3", icon: "https://skillicons.dev/icons?i=css" },
         { name: "Tailwind", icon: "https://skillicons.dev/icons?i=tailwind" },
+        { name: "Material UI", icon: "https://skillicons.dev/icons?i=materialui" },
     ],
     "Backend Services": [
         { name: "Node.js", icon: "https://skillicons.dev/icons?i=nodejs" },
         { name: "Express.js", icon: "https://skillicons.dev/icons?i=express" },
         { name: "NestJS", icon: "https://skillicons.dev/icons?i=nestjs" },
         { name: "REST APIs", icon: "https://img.icons8.com/color/48/api-settings.png" },
+        { name: "JWT", icon: "https://logodix.com/logo/1989638.png", imgClass: "rounded-xl" },
     ],
     "Database": [
         { name: "SQL", icon: "https://img.icons8.com/fluency/48/sql.png" },
         { name: "MySQL", icon: "https://skillicons.dev/icons?i=mysql" },
+    ],
+    "Programming Languages": [
+        { name: "JavaScript", icon: "https://skillicons.dev/icons?i=js" },
+        { name: "Python", icon: "https://skillicons.dev/icons?i=py" },
     ],
     "Tooling & Collaboration": [
         { name: "Git", icon: "https://skillicons.dev/icons?i=git" },
         { name: "GitHub", icon: "https://skillicons.dev/icons?i=github" },
         { name: "Linux", icon: "https://skillicons.dev/icons?i=linux" },
         { name: "VS Code", icon: "https://skillicons.dev/icons?i=vscode" },
+        { name: "Jira", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" },
         { name: "Agile", icon: "https://img.icons8.com/color/48/sprint-iteration.png" },
+        { name: "Postman", icon: "https://skillicons.dev/icons?i=postman" },
     ],
 };
 
