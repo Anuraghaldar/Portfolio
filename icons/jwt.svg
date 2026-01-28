@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JWT logo">
+  <rect width="256" height="256" fill="none" />
+  <g transform="translate(128 128)">
+    <path d="M0 -96 L16 -8 L-16 -8 Z" fill="#7851A9" />
+    <path d="M0 96 L16 8 L-16 8 Z" fill="#4AA3FF" />
+    <path d="M96 0 L8 16 L8 -16 Z" fill="#FF5D5D" />
+    <path d="M-96 0 L-8 16 L-8 -16 Z" fill="#FFB347" />
+    <path d="M68 -68 L16 -8 L0 -44 Z" fill="#00C48C" />
+    <path d="M-68 68 L-16 8 L0 44 Z" fill="#FF6FD8" />
+  </g>
+</svg>
