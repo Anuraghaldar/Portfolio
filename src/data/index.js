@@ -31,9 +31,9 @@ export const heroMetrics = [
         highlight: false,
     },
     {
-        value: 20,
-        suffix: "%",
-        label: "Faster delivery",
+        value: 25,
+        suffix: "+",
+        label: "Technologies Mastered",
         highlight: false,
     },
     {
@@ -46,20 +46,21 @@ export const heroMetrics = [
 
 export const skills = {
     "Frontend Systems": [
-        { name: "React", icon: "https://skillicons.dev/icons?i=react" },
         { name: "TypeScript", icon: "https://skillicons.dev/icons?i=ts" },
         { name: "Redux", icon: "https://skillicons.dev/icons?i=redux" },
         { name: "React Query", icon: "/Portfolio/icons/react-query.svg" },
         { name: "HTML5", icon: "https://skillicons.dev/icons?i=html" },
+        { name: "React", icon: "https://skillicons.dev/icons?i=react" },
         { name: "CSS3", icon: "https://skillicons.dev/icons?i=css" },
         { name: "Tailwind", icon: "https://skillicons.dev/icons?i=tailwind" },
         { name: "Material UI", icon: "https://skillicons.dev/icons?i=materialui" },
+        { name: "Framer Motion", icon: "https://images.seeklogo.com/logo-png/44/1/framer-motion-logo-png_seeklogo-446185.png",imgClass: "rounded-xl" },
     ],
     "Backend Services": [
-        { name: "Node.js", icon: "https://skillicons.dev/icons?i=nodejs" },
+        { name: "REST APIs", icon: "https://img.icons8.com/color/48/api-settings.png" },
         { name: "Express.js", icon: "https://skillicons.dev/icons?i=express" },
         { name: "NestJS", icon: "https://skillicons.dev/icons?i=nestjs" },
-        { name: "REST APIs", icon: "https://img.icons8.com/color/48/api-settings.png" },
+        { name: "Node.js", icon: "https://skillicons.dev/icons?i=nodejs" },
         { name: "JWT", icon: "https://logodix.com/logo/1989638.png", imgClass: "rounded-xl" },
     ],
     "Database": [
@@ -131,7 +132,7 @@ export const projects = [
         metrics: [
             { label: "Reusable modules", value: "10+" },
             { label: "Custom events", value: "14" },
-            { label: "Faster releases", value: "20%" },
+            { label: "Technologies Mastered", value: "20+" },
         ],
         category: "Web Development",
         image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80",
