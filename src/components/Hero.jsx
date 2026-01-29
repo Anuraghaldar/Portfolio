@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { personalInfo, heroMetrics } from '../data';
+import { scrollToSection } from '../utils/scrollToSection';
 
 // Animated Counter Component - Starts immediately on page load
 const AnimatedCounter = ({ value, suffix = "", highlight = false, duration = 2, delay = 0 }) => {
@@ -105,6 +106,11 @@ const TechOrbit = () => {
 };
 
 const Hero = () => {
+    const handleCtaClick = (event, target) => {
+        event.preventDefault();
+        scrollToSection(target);
+    };
+
     return (
         <section id="hero" className="relative w-full min-h-screen overflow-hidden bg-[#040715] scroll-mt-28 md:scroll-mt-32">
             {/* Gradient Background */}
@@ -159,6 +165,7 @@ const Hero = () => {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     className="flex items-center gap-2 bg-gradient-to-r from-cyan-300 via-sky-400 to-emerald-400 text-slate-950 px-6 py-3 rounded-xl font-semibold shadow-[0_12px_30px_rgba(14,165,233,0.35)] hover:brightness-110 transition-all"
+                                    onClick={(event) => handleCtaClick(event, '#projects')}
                                 >
                                     {personalInfo.ctaPrimary || "Explore My Portfolio"}
                                     <ArrowRight size={20} />
@@ -168,6 +175,7 @@ const Hero = () => {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     className="flex items-center gap-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-xl font-semibold hover:border-cyan-400/60 hover:text-cyan-200 transition-all"
+                                    onClick={(event) => handleCtaClick(event, '#contact')}
                                 >
                                     {personalInfo.ctaSecondary || "Hire Me"}
                                     <ArrowRight size={20} />
