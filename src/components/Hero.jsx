@@ -106,7 +106,7 @@ const TechOrbit = () => {
 
 const Hero = () => {
     return (
-        <section id="hero" className="relative w-full h-screen overflow-hidden bg-[#040715]">
+        <section id="hero" className="relative w-full min-h-screen overflow-hidden bg-[#040715] scroll-mt-28 md:scroll-mt-32">
             {/* Gradient Background */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#020510] via-[#050b1c] to-[#0b1229]" />
@@ -134,9 +134,9 @@ const Hero = () => {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 h-full flex flex-col justify-between pt-36 pb-20">
+            <div className="relative z-10 flex flex-col gap-12 lg:gap-16 pt-28 sm:pt-36 lg:pt-40 pb-16 min-h-screen">
                 {/* Top Section - 50/50 Split Layout */}
-                <div className="flex flex-col lg:flex-row items-center max-w-7xl mx-auto px-6 w-full flex-1 min-h-0">
+                <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-8 max-w-7xl mx-auto px-6 w-full">
                     {/* Left Content - 50% */}
                     <div className="w-full lg:w-1/2 flex flex-col justify-center lg:pr-8">
                         <motion.div
@@ -153,7 +153,7 @@ const Hero = () => {
                             </p>
 
                             {/* CTA Buttons */}
-                            <div className="flex flex-wrap gap-3">
+                            <div className="flex flex-wrap gap-3 mt-6">
                                 <motion.a
                                     href="#projects"
                                     whileHover={{ scale: 1.05 }}
@@ -177,7 +177,7 @@ const Hero = () => {
                     </div>
 
                     {/* Right Side - 50% */}
-                    <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-end relative">
+                    <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-end relative mt-6 lg:mt-0">
                         <div className="hidden lg:flex flex-col items-center gap-8 absolute inset-x-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
                             <div className="relative">
                                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/25 via-transparent to-purple-500/25 blur-2xl" />
@@ -327,7 +327,7 @@ export default shipRelease;`}
                 </div>
 
                 {/* Bottom Metrics Section - Visible on page load */}
-                <div className="border-t border-white/10 pt-3 pb-4">
+                <div className="border-t border-white/10 pt-4 pb-6 mt-8 sm:mt-12">
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
                             {heroMetrics.map((metric, index) => (

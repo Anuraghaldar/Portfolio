@@ -36,7 +36,7 @@ const Skills = () => {
     };
 
     return (
-        <section id="skills" className="relative overflow-hidden min-h-screen flex flex-col py-24 bg-gradient-to-b from-[#050b1c] via-[#030511] to-[#01040c]">
+        <section id="skills" className="relative overflow-hidden min-h-screen flex flex-col py-24 bg-gradient-to-b from-[#050b1c] via-[#030511] to-[#01040c] scroll-mt-32 lg:scroll-mt-36">
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute -top-40 left-[-10%] w-[480px] h-[480px] bg-cyan-500/20 blur-[180px]" />
                 <div className="absolute top-0 right-[-5%] w-[520px] h-[520px] bg-purple-500/20 blur-[220px]" />

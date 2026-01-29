@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Github, Linkedin, Sparkles, Orbit, Layers, ShieldCheck, MessageSquare, Atom } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -6,6 +6,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('hero');
+    const headerBarRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -60,12 +61,31 @@ const Navbar = () => {
         { label: 'Contact', href: '#contact', id: 'contact', icon: MessageSquare },
     ];
 
+    const handleNavClick = (event, href) => {
+        event.preventDefault();
+        setIsOpen(false);
+
+        const targetId = href.replace('#', '');
+        const targetEl = document.getElementById(targetId);
+        if (!targetEl) {
+            return;
+        }
+
+        requestAnimationFrame(() => {
+            const navHeight = headerBarRef.current?.offsetHeight || 0;
+            const additionalOffset = window.innerWidth < 768 ? 28 : 18;
+            const yPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - additionalOffset;
+
+            window.scrollTo({ top: Math.max(yPosition, 0), behavior: 'smooth' });
+        });
+    };
+
     return (
         <nav
             className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/80 backdrop-blur-2xl py-4 shadow-[0_10px_40px_rgba(2,6,23,0.8)]' : 'bg-transparent py-6'
                 }`}
         >
-            <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div ref={headerBarRef} className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <a href="#" className="relative inline-flex items-center gap-2 text-lg font-semibold tracking-tight text-white">
                     <span className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 animate-pulse" />
                     <span className="uppercase text-[11px] text-slate-400 tracking-[0.35em]">Studio</span>
@@ -86,6 +106,7 @@ const Navbar = () => {
                                         ? 'border-cyan-400/80 bg-cyan-400/10 shadow-[0_0_25px_rgba(34,211,238,0.2)]'
                                         : 'border-white/5 bg-white/5 hover:border-cyan-400/40 hover:bg-white/10'
                                 }`}
+                                onClick={(event) => handleNavClick(event, link.href)}
                             >
                                 <span className={`text-[10px] font-mono tracking-[0.4em] ${isActive ? 'text-cyan-300' : 'text-slate-400'}`}>
                                     {String(index + 1).padStart(2, '0')}
@@ -130,7 +151,7 @@ const Navbar = () => {
                                                 ? 'border-cyan-400/70 bg-cyan-400/10 shadow-[0_0_30px_rgba(34,211,238,0.25)]'
                                                 : 'border-white/5 bg-white/5 text-slate-200 hover:border-cyan-400/40 hover:bg-white/10'
                                         }`}
-                                        onClick={() => setIsOpen(false)}
+                                        onClick={(event) => handleNavClick(event, link.href)}
                                     >
                                         <span className="text-xs font-mono tracking-[0.4em] text-slate-400">
                                             {String(index + 1).padStart(2, '0')}
